@@ -19,12 +19,14 @@ class TrackedObject
 public:
   int id_;
   std::vector<int> indices_;
+  std::vector<cv::Point> image_coords_;
   //Scene* scene_;
   //Segmentation* segmentation_;
   
   TrackedObject();
   void serialize(std::ostream& out) const;
   void deserialize(std::istream& in);
+  void generateImageCoords(Scene& sc);
 };
 
 class Segmentation

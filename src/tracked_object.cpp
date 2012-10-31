@@ -27,3 +27,12 @@ void TrackedObject::deserialize(std::istream& in)
   for(int i = 0; i < num_indices; ++i)
     in.read((char*)&indices_[i], sizeof(int));
 }
+
+void TrackedObject::generateImageCoords(Scene& sc) {
+  if (image_coords_.size() != 0) return;
+  for (int i = 0; i < indices_.size(); ++i) {
+    cv::Point point(sc.cam_points_(indices_[i], 0),
+		    sc.cam_points_(indices_[i], 1));
+    image_coords_.push_back(point);
+  }
+}
