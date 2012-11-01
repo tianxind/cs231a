@@ -2,7 +2,6 @@
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/ROSBUILD_genmsg_lisp.dir
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/ROSBUILD_gensrv_cpp.dir
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/ROSBUILD_gensrv_lisp.dir
-/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/baseline_segmenter.dir
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/clean-test-results.dir
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/hand_segmenter.dir
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/opencv_test.dir
@@ -16,5 +15,6 @@
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/test-future.dir
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/test-results.dir
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/test-results-run.dir
+/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/test_inrange.dir
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/tests.dir
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/view_data.dir

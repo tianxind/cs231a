@@ -148,19 +148,6 @@ ROSBUILD_gensrv_lisp/fast:
 .PHONY : ROSBUILD_gensrv_lisp/fast
 
 #=============================================================================
-# Target rules for targets named baseline_segmenter
-
-# Build rule for target.
-baseline_segmenter: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 baseline_segmenter
-.PHONY : baseline_segmenter
-
-# fast build rule for target.
-baseline_segmenter/fast:
-	$(MAKE) -f CMakeFiles/baseline_segmenter.dir/build.make CMakeFiles/baseline_segmenter.dir/build
-.PHONY : baseline_segmenter/fast
-
-#=============================================================================
 # Target rules for targets named clean-test-results
 
 # Build rule for target.
@@ -330,6 +317,19 @@ test-results-run/fast:
 .PHONY : test-results-run/fast
 
 #=============================================================================
+# Target rules for targets named test_inrange
+
+# Build rule for target.
+test_inrange: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_inrange
+.PHONY : test_inrange
+
+# fast build rule for target.
+test_inrange/fast:
+	$(MAKE) -f CMakeFiles/test_inrange.dir/build.make CMakeFiles/test_inrange.dir/build
+.PHONY : test_inrange/fast
+
+#=============================================================================
 # Target rules for targets named tests
 
 # Build rule for target.
@@ -354,21 +354,6 @@ view_data: cmake_check_build_system
 view_data/fast:
 	$(MAKE) -f CMakeFiles/view_data.dir/build.make CMakeFiles/view_data.dir/build
 .PHONY : view_data/fast
-
-# target to build an object file
-src/baseline_segmenter.o:
-	$(MAKE) -f CMakeFiles/baseline_segmenter.dir/build.make CMakeFiles/baseline_segmenter.dir/src/baseline_segmenter.o
-.PHONY : src/baseline_segmenter.o
-
-# target to preprocess a source file
-src/baseline_segmenter.i:
-	$(MAKE) -f CMakeFiles/baseline_segmenter.dir/build.make CMakeFiles/baseline_segmenter.dir/src/baseline_segmenter.i
-.PHONY : src/baseline_segmenter.i
-
-# target to generate assembly for a file
-src/baseline_segmenter.s:
-	$(MAKE) -f CMakeFiles/baseline_segmenter.dir/build.make CMakeFiles/baseline_segmenter.dir/src/baseline_segmenter.s
-.PHONY : src/baseline_segmenter.s
 
 # target to build an object file
 src/hand_segmenter.o:
@@ -461,6 +446,21 @@ src/sequence.s:
 .PHONY : src/sequence.s
 
 # target to build an object file
+src/test_inrange.o:
+	$(MAKE) -f CMakeFiles/test_inrange.dir/build.make CMakeFiles/test_inrange.dir/src/test_inrange.o
+.PHONY : src/test_inrange.o
+
+# target to preprocess a source file
+src/test_inrange.i:
+	$(MAKE) -f CMakeFiles/test_inrange.dir/build.make CMakeFiles/test_inrange.dir/src/test_inrange.i
+.PHONY : src/test_inrange.i
+
+# target to generate assembly for a file
+src/test_inrange.s:
+	$(MAKE) -f CMakeFiles/test_inrange.dir/build.make CMakeFiles/test_inrange.dir/src/test_inrange.s
+.PHONY : src/test_inrange.s
+
+# target to build an object file
 src/tracked_object.o:
 	$(MAKE) -f CMakeFiles/segmentation_and_tracking.dir/build.make CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o
 .PHONY : src/tracked_object.o
@@ -500,7 +500,6 @@ help:
 	@echo "... ROSBUILD_genmsg_lisp"
 	@echo "... ROSBUILD_gensrv_cpp"
 	@echo "... ROSBUILD_gensrv_lisp"
-	@echo "... baseline_segmenter"
 	@echo "... clean-test-results"
 	@echo "... edit_cache"
 	@echo "... hand_segmenter"
@@ -516,11 +515,9 @@ help:
 	@echo "... test-future"
 	@echo "... test-results"
 	@echo "... test-results-run"
+	@echo "... test_inrange"
 	@echo "... tests"
 	@echo "... view_data"
-	@echo "... src/baseline_segmenter.o"
-	@echo "... src/baseline_segmenter.i"
-	@echo "... src/baseline_segmenter.s"
 	@echo "... src/hand_segmenter.o"
 	@echo "... src/hand_segmenter.i"
 	@echo "... src/hand_segmenter.s"
@@ -539,6 +536,9 @@ help:
 	@echo "... src/sequence.o"
 	@echo "... src/sequence.i"
 	@echo "... src/sequence.s"
+	@echo "... src/test_inrange.o"
+	@echo "... src/test_inrange.i"
+	@echo "... src/test_inrange.s"
 	@echo "... src/tracked_object.o"
 	@echo "... src/tracked_object.i"
 	@echo "... src/tracked_object.s"

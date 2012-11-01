@@ -32,8 +32,10 @@ rosbuild_add_library(${PROJECT_NAME} src/scene.cpp src/segmentation.cpp
 rosbuild_add_executable(view_data src/view_data.cpp)
 target_link_libraries(view_data ${PROJECT_NAME})
 
-rosbuild_add_executable(baseline_segmenter src/baseline_segmenter.cpp)
-target_link_libraries(baseline_segmenter ${PROJECT_NAME})
+#rosbuild_add_executable(baseline_segmenter src/baseline_segmenter.cpp)
+#target_link_libraries(baseline_segmenter ${PROJECT_NAME})
+rosbuild_add_executable(test_inrange src/test_inrange.cpp)
+target_link_libraries(test_inrange ${PROJECT_NAME})
 
 rosbuild_add_executable(hand_segmenter src/hand_segmenter.cpp)
 target_link_libraries(hand_segmenter ${PROJECT_NAME})

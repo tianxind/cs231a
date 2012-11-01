@@ -49,6 +49,12 @@ segmentation_and_tracking/hand_segmenter_view_controller.h
 -
 utility
 -
+opencv2/video/tracking.hpp
+/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/opencv2/video/tracking.hpp
+opencv2/imgproc/imgproc.hpp
+/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/opencv2/imgproc/imgproc.hpp
+opencv2/highgui/highgui.hpp
+/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/opencv2/highgui/highgui.hpp
 
 /home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/source/OpenCV-2.4.0/modules/core/include/opencv2/core/core.hpp
 opencv2/core/types_c.h
@@ -159,6 +165,12 @@ opencv2/imgproc/types_c.h
 /home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/source/OpenCV-2.4.0/modules/imgproc/include/opencv2/imgproc/types_c.h
 opencv2/core/core_c.h
 /home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/source/OpenCV-2.4.0/modules/imgproc/include/opencv2/imgproc/opencv2/core/core_c.h
+
+/home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/source/OpenCV-2.4.0/modules/video/include/opencv2/video/tracking.hpp
+opencv2/core/core.hpp
+/home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/source/OpenCV-2.4.0/modules/video/include/opencv2/video/opencv2/core/core.hpp
+opencv2/imgproc/imgproc_c.h
+/home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/source/OpenCV-2.4.0/modules/video/include/opencv2/video/opencv2/imgproc/imgproc_c.h
 
 /usr/include/eigen3/Eigen/Cholesky
 Core

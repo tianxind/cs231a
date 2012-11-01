@@ -16,6 +16,7 @@ CMakeFiles/baseline_segmenter.dir/src/baseline_segmenter.o: /home/sandra/cs231a/
 CMakeFiles/baseline_segmenter.dir/src/baseline_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/source/OpenCV-2.4.0/modules/imgproc/include/opencv2/imgproc/imgproc.hpp
 CMakeFiles/baseline_segmenter.dir/src/baseline_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/source/OpenCV-2.4.0/modules/imgproc/include/opencv2/imgproc/imgproc_c.h
 CMakeFiles/baseline_segmenter.dir/src/baseline_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/source/OpenCV-2.4.0/modules/imgproc/include/opencv2/imgproc/types_c.h
+CMakeFiles/baseline_segmenter.dir/src/baseline_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/source/OpenCV-2.4.0/modules/video/include/opencv2/video/tracking.hpp
 CMakeFiles/baseline_segmenter.dir/src/baseline_segmenter.o: /usr/include/eigen3/Eigen/Cholesky
 CMakeFiles/baseline_segmenter.dir/src/baseline_segmenter.o: /usr/include/eigen3/Eigen/Core
 CMakeFiles/baseline_segmenter.dir/src/baseline_segmenter.o: /usr/include/eigen3/Eigen/Dense

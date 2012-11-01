@@ -25,7 +25,7 @@ int main(int argc, char** argv)
     return 2;
   }
 
-  double scale = 1.0;
+  double scale = 0.5;
   if(getenv("SCALE"))
     scale = atof(getenv("SCALE"));
   OpenCVView view("Image", scale);
