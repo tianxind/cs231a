@@ -8,7 +8,7 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 
-#define DEPG_SIGMA (getenv("DEPG_SIGMA") ? atof(getenv("DEPG_SIGMA")) : 5)
+#define DEPG_SIGMA (getenv("DEPG_SIGMA") ? atof(getenv("DEPG_SIGMA")) : 0.15)
 using namespace std;
 namespace bfs = boost::filesystem;
 
@@ -33,32 +33,34 @@ pcl::KdTreeFLANN<pcl::PointXYZ>* buildForegroundKdTree(Scene& seed_frame) {
   // if (seed_objects.size() > 1)
   //   num_points += seed_objects[1].indices_.size();
   // else
-  num_points += seed_objects[0].indices_.size();
-  /*for (size_t i = 0; i < seed_objects.size(); ++i) {
+  //num_points += seed_objects[0].indices_.size();
+  for (size_t i = 0; i < seed_objects.size(); ++i) {
     num_points += seed_objects[i].indices_.size();
-    }*/
+  }
   fg_cloud->width = num_points;
   fg_cloud->height = 1;
   fg_cloud->points.resize(fg_cloud->width * fg_cloud->height);
   int cloud_index = 0;
-  vector<int>& indices = seed_objects[0].indices_;
+  //vector<int>& indices = seed_objects[0].indices_;
   // if (seed_objects.size() > 1)
   //  indices = seed_objects[1].indices_;
   // else 
   //  indices = seed_objects[0].indices_;
-  for (size_t j = 0; j < indices.size(); ++j) {
+  /*for (size_t j = 0; j < indices.size(); ++j) {
     fg_cloud->points[cloud_index].x = seed_frame.cloud_cam_(indices[j], 0); 
     fg_cloud->points[cloud_index].y = seed_frame.cloud_cam_(indices[j], 1);
     fg_cloud->points[cloud_index].z = seed_frame.cloud_cam_(indices[j], 2);  
-  }
-  /*for (size_t i = 0; i < seed_objects.size(); ++i) {
+  }*/
+  for (size_t i = 0; i < seed_objects.size(); ++i) {
     vector<int>& indices = seed_objects[i].indices_;
     for (size_t j = 0; j < indices.size(); ++j) {
       fg_cloud->points[cloud_index].x = seed_frame.cloud_cam_(indices[j], 0); 
       fg_cloud->points[cloud_index].y = seed_frame.cloud_cam_(indices[j], 1);
       fg_cloud->points[cloud_index].z = seed_frame.cloud_cam_(indices[j], 2);  
+      cloud_index++;
     }
-    }*/
+  }
+  cout<<"foreground cloud size: "<< fg_cloud->width<< " "<<cloud_index<<endl; 
   fg_tree->setInputCloud(fg_cloud);
   return fg_tree;
 }
@@ -124,15 +126,17 @@ void addEdgesWithinRadius(Eigen::MatrixXf& cloud_cam_,
 void generateSegmentationFromGraph(graphcuts::Graph3dPtr graph,
                                    Scene& target_frame) {
   TrackedObject to;
+  int foreground_num = 0;
   for (int i = 0; i < target_frame.cloud_cam_.rows(); ++i) {
     if (graph->what_segment(i, Graph<double, double, double>::SINK) ==
         Graph<double, double, double>::SOURCE) {
       to.indices_.push_back(i);
-      cout << "Found foreground!!!!";
+      foreground_num++;
+      //cout << "Found foreground!!!!";
     }
   }
   target_frame.addTrackedObject(to);
-  cout << "About to save segmentation..." << endl;
+  cout << "About to save segmentation..."<< foreground_num  << endl;
   target_frame.saveSegmentation();
 }
 
@@ -158,7 +162,7 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
     double src_pot = sourcePotential(dist, DEPG_SIGMA);
     double snk_pot = sinkPotential(dist, DEPG_SIGMA);
     graph_->add_tweights(i, src_pot, snk_pot);
-    cout << "Node dist: " << dist << " (source) " << src_pot << " (sink) " << snk_pot << endl;
+    //cout << "Node dist: " << dist << " (source) " << src_pot << " (sink) " << snk_pot << endl;
   }
   // Add edges and edge potentials
   // First construct kdtree for current image
@@ -195,7 +199,7 @@ int main(int argc, char** argv)
   pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree = buildForegroundKdTree(seed_frame);
 
 
-  for (size_t i = 1; i < 10; ++i) {
+  for (size_t i = 1; i < seq.size(); ++i) {
     Scene& target_frame = *seq.getScene(i);
     cout << "Tracking image in frame " << i << endl;
     graphCutsSegmentation(fg_kdtree, target_frame);
