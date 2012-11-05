@@ -9,6 +9,9 @@
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/segmentation_and_tracking</url>
   <depend package="opencv2_flags"/>
+  <depend package="pcl_bleeding" />
+  <depend package="maxflow" />
+  <depend package="graphcuts" />
   <depend package="eigen_extensions"/>
   <depend package="image_labeler"/>
 </package>

@@ -161,6 +161,19 @@ clean-test-results/fast:
 .PHONY : clean-test-results/fast
 
 #=============================================================================
+# Target rules for targets named graphcuts_segmenter
+
+# Build rule for target.
+graphcuts_segmenter: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 graphcuts_segmenter
+.PHONY : graphcuts_segmenter
+
+# fast build rule for target.
+graphcuts_segmenter/fast:
+	$(MAKE) -f CMakeFiles/graphcuts_segmenter.dir/build.make CMakeFiles/graphcuts_segmenter.dir/build
+.PHONY : graphcuts_segmenter/fast
+
+#=============================================================================
 # Target rules for targets named hand_segmenter
 
 # Build rule for target.
@@ -356,6 +369,21 @@ view_data/fast:
 .PHONY : view_data/fast
 
 # target to build an object file
+src/graphcuts_segmenter.o:
+	$(MAKE) -f CMakeFiles/graphcuts_segmenter.dir/build.make CMakeFiles/graphcuts_segmenter.dir/src/graphcuts_segmenter.o
+.PHONY : src/graphcuts_segmenter.o
+
+# target to preprocess a source file
+src/graphcuts_segmenter.i:
+	$(MAKE) -f CMakeFiles/graphcuts_segmenter.dir/build.make CMakeFiles/graphcuts_segmenter.dir/src/graphcuts_segmenter.i
+.PHONY : src/graphcuts_segmenter.i
+
+# target to generate assembly for a file
+src/graphcuts_segmenter.s:
+	$(MAKE) -f CMakeFiles/graphcuts_segmenter.dir/build.make CMakeFiles/graphcuts_segmenter.dir/src/graphcuts_segmenter.s
+.PHONY : src/graphcuts_segmenter.s
+
+# target to build an object file
 src/hand_segmenter.o:
 	$(MAKE) -f CMakeFiles/hand_segmenter.dir/build.make CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o
 .PHONY : src/hand_segmenter.o
@@ -502,6 +530,7 @@ help:
 	@echo "... ROSBUILD_gensrv_lisp"
 	@echo "... clean-test-results"
 	@echo "... edit_cache"
+	@echo "... graphcuts_segmenter"
 	@echo "... hand_segmenter"
 	@echo "... opencv_test"
 	@echo "... rebuild_cache"
@@ -518,6 +547,9 @@ help:
 	@echo "... test_inrange"
 	@echo "... tests"
 	@echo "... view_data"
+	@echo "... src/graphcuts_segmenter.o"
+	@echo "... src/graphcuts_segmenter.i"
+	@echo "... src/graphcuts_segmenter.s"
 	@echo "... src/hand_segmenter.o"
 	@echo "... src/hand_segmenter.i"
 	@echo "... src/hand_segmenter.s"

@@ -52,22 +52,32 @@ CMakeFiles/opencv_test.dir/src/opencv_test.o: ../manifest.xml
 CMakeFiles/opencv_test.dir/src/opencv_test.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/manifest.xml
 CMakeFiles/opencv_test.dir/src/opencv_test.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv2_flags/manifest.xml
 CMakeFiles/opencv_test.dir/src/opencv_test.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/eigen_flags/manifest.xml
+CMakeFiles/opencv_test.dir/src/opencv_test.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
+CMakeFiles/opencv_test.dir/src/opencv_test.o: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+CMakeFiles/opencv_test.dir/src/opencv_test.o: /opt/ros/fuerte/share/roscpp_serialization/manifest.xml
+CMakeFiles/opencv_test.dir/src/opencv_test.o: /home/sandra/cs231a/jarvis/ros-pkg/external/pcl_bleeding/manifest.xml
+CMakeFiles/opencv_test.dir/src/opencv_test.o: /home/sandra/cs231a/jarvis/ros-pkg/external/maxflow/manifest.xml
 CMakeFiles/opencv_test.dir/src/opencv_test.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/gzstream/manifest.xml
 CMakeFiles/opencv_test.dir/src/opencv_test.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/timer/manifest.xml
 CMakeFiles/opencv_test.dir/src/opencv_test.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/eigen_extensions/manifest.xml
 CMakeFiles/opencv_test.dir/src/opencv_test.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/serializable/manifest.xml
+CMakeFiles/opencv_test.dir/src/opencv_test.o: /opt/ros/fuerte/share/rosconsole/manifest.xml
+CMakeFiles/opencv_test.dir/src/opencv_test.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/name_mapping/manifest.xml
+CMakeFiles/opencv_test.dir/src/opencv_test.o: /home/sandra/cs231a/jarvis/ros-pkg/core/optimization/manifest.xml
+CMakeFiles/opencv_test.dir/src/opencv_test.o: /home/sandra/cs231a/jarvis/ros-pkg/core/pipeline2/manifest.xml
+CMakeFiles/opencv_test.dir/src/opencv_test.o: /home/sandra/cs231a/jarvis/ros-pkg/core/graphcuts/manifest.xml
 CMakeFiles/opencv_test.dir/src/opencv_test.o: /home/sandra/cs231a/jarvis/ros-pkg/core/image_labeler/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/opencv_test.dir/src/opencv_test.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/opencv_test.dir/src/opencv_test.o -c /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/opencv_test.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/opencv_test.dir/src/opencv_test.o -c /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/opencv_test.cpp
 
 CMakeFiles/opencv_test.dir/src/opencv_test.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/opencv_test.dir/src/opencv_test.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/opencv_test.cpp > CMakeFiles/opencv_test.dir/src/opencv_test.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/opencv_test.cpp > CMakeFiles/opencv_test.dir/src/opencv_test.i
 
 CMakeFiles/opencv_test.dir/src/opencv_test.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/opencv_test.dir/src/opencv_test.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/opencv_test.cpp -o CMakeFiles/opencv_test.dir/src/opencv_test.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/opencv_test.cpp -o CMakeFiles/opencv_test.dir/src/opencv_test.s
 
 CMakeFiles/opencv_test.dir/src/opencv_test.o.requires:
 .PHONY : CMakeFiles/opencv_test.dir/src/opencv_test.o.requires

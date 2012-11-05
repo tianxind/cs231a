@@ -52,22 +52,32 @@ CMakeFiles/segmentation_and_tracking.dir/src/scene.o: ../manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv2_flags/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/eigen_flags/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /opt/ros/fuerte/share/roscpp_serialization/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /home/sandra/cs231a/jarvis/ros-pkg/external/pcl_bleeding/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /home/sandra/cs231a/jarvis/ros-pkg/external/maxflow/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/gzstream/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/timer/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/eigen_extensions/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/serializable/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /opt/ros/fuerte/share/rosconsole/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/name_mapping/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /home/sandra/cs231a/jarvis/ros-pkg/core/optimization/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /home/sandra/cs231a/jarvis/ros-pkg/core/pipeline2/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /home/sandra/cs231a/jarvis/ros-pkg/core/graphcuts/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/scene.o: /home/sandra/cs231a/jarvis/ros-pkg/core/image_labeler/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/segmentation_and_tracking.dir/src/scene.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/segmentation_and_tracking.dir/src/scene.o -c /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/scene.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/segmentation_and_tracking.dir/src/scene.o -c /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/scene.cpp
 
 CMakeFiles/segmentation_and_tracking.dir/src/scene.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/segmentation_and_tracking.dir/src/scene.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/scene.cpp > CMakeFiles/segmentation_and_tracking.dir/src/scene.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/scene.cpp > CMakeFiles/segmentation_and_tracking.dir/src/scene.i
 
 CMakeFiles/segmentation_and_tracking.dir/src/scene.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/segmentation_and_tracking.dir/src/scene.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/scene.cpp -o CMakeFiles/segmentation_and_tracking.dir/src/scene.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/scene.cpp -o CMakeFiles/segmentation_and_tracking.dir/src/scene.s
 
 CMakeFiles/segmentation_and_tracking.dir/src/scene.o.requires:
 .PHONY : CMakeFiles/segmentation_and_tracking.dir/src/scene.o.requires
@@ -84,22 +94,32 @@ CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: ../manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv2_flags/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/eigen_flags/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /opt/ros/fuerte/share/roscpp_serialization/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /home/sandra/cs231a/jarvis/ros-pkg/external/pcl_bleeding/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /home/sandra/cs231a/jarvis/ros-pkg/external/maxflow/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/gzstream/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/timer/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/eigen_extensions/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/serializable/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /opt/ros/fuerte/share/rosconsole/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/name_mapping/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /home/sandra/cs231a/jarvis/ros-pkg/core/optimization/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /home/sandra/cs231a/jarvis/ros-pkg/core/pipeline2/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /home/sandra/cs231a/jarvis/ros-pkg/core/graphcuts/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o: /home/sandra/cs231a/jarvis/ros-pkg/core/image_labeler/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o -c /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/segmentation.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o -c /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/segmentation.cpp
 
 CMakeFiles/segmentation_and_tracking.dir/src/segmentation.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/segmentation_and_tracking.dir/src/segmentation.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/segmentation.cpp > CMakeFiles/segmentation_and_tracking.dir/src/segmentation.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/segmentation.cpp > CMakeFiles/segmentation_and_tracking.dir/src/segmentation.i
 
 CMakeFiles/segmentation_and_tracking.dir/src/segmentation.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/segmentation_and_tracking.dir/src/segmentation.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/segmentation.cpp -o CMakeFiles/segmentation_and_tracking.dir/src/segmentation.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/segmentation.cpp -o CMakeFiles/segmentation_and_tracking.dir/src/segmentation.s
 
 CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o.requires:
 .PHONY : CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o.requires
@@ -116,22 +136,32 @@ CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: ../manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv2_flags/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/eigen_flags/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /opt/ros/fuerte/share/roscpp_serialization/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /home/sandra/cs231a/jarvis/ros-pkg/external/pcl_bleeding/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /home/sandra/cs231a/jarvis/ros-pkg/external/maxflow/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/gzstream/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/timer/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/eigen_extensions/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/serializable/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /opt/ros/fuerte/share/rosconsole/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/name_mapping/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /home/sandra/cs231a/jarvis/ros-pkg/core/optimization/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /home/sandra/cs231a/jarvis/ros-pkg/core/pipeline2/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /home/sandra/cs231a/jarvis/ros-pkg/core/graphcuts/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o: /home/sandra/cs231a/jarvis/ros-pkg/core/image_labeler/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o -c /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/tracked_object.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o -c /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/tracked_object.cpp
 
 CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/tracked_object.cpp > CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/tracked_object.cpp > CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.i
 
 CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/tracked_object.cpp -o CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/tracked_object.cpp -o CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.s
 
 CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o.requires:
 .PHONY : CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o.requires
@@ -148,22 +178,32 @@ CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: ../manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv2_flags/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/eigen_flags/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /opt/ros/fuerte/share/roscpp_serialization/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /home/sandra/cs231a/jarvis/ros-pkg/external/pcl_bleeding/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /home/sandra/cs231a/jarvis/ros-pkg/external/maxflow/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/gzstream/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/timer/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/eigen_extensions/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/serializable/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /opt/ros/fuerte/share/rosconsole/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/name_mapping/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /home/sandra/cs231a/jarvis/ros-pkg/core/optimization/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /home/sandra/cs231a/jarvis/ros-pkg/core/pipeline2/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /home/sandra/cs231a/jarvis/ros-pkg/core/graphcuts/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/sequence.o: /home/sandra/cs231a/jarvis/ros-pkg/core/image_labeler/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/segmentation_and_tracking.dir/src/sequence.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/segmentation_and_tracking.dir/src/sequence.o -c /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/sequence.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/segmentation_and_tracking.dir/src/sequence.o -c /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/sequence.cpp
 
 CMakeFiles/segmentation_and_tracking.dir/src/sequence.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/segmentation_and_tracking.dir/src/sequence.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/sequence.cpp > CMakeFiles/segmentation_and_tracking.dir/src/sequence.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/sequence.cpp > CMakeFiles/segmentation_and_tracking.dir/src/sequence.i
 
 CMakeFiles/segmentation_and_tracking.dir/src/sequence.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/segmentation_and_tracking.dir/src/sequence.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/sequence.cpp -o CMakeFiles/segmentation_and_tracking.dir/src/sequence.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/sequence.cpp -o CMakeFiles/segmentation_and_tracking.dir/src/sequence.s
 
 CMakeFiles/segmentation_and_tracking.dir/src/sequence.o.requires:
 .PHONY : CMakeFiles/segmentation_and_tracking.dir/src/sequence.o.requires
@@ -180,22 +220,32 @@ CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: .
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv2_flags/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/eigen_flags/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /opt/ros/fuerte/share/roscpp_serialization/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/external/pcl_bleeding/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/external/maxflow/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/gzstream/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/timer/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/eigen_extensions/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/serializable/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /opt/ros/fuerte/share/rosconsole/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/name_mapping/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/core/optimization/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/core/pipeline2/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/core/graphcuts/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/core/image_labeler/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o -c /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/hand_segmenter_view_controller.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o -c /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/hand_segmenter_view_controller.cpp
 
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/hand_segmenter_view_controller.cpp > CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/hand_segmenter_view_controller.cpp > CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.i
 
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/hand_segmenter_view_controller.cpp -o CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/hand_segmenter_view_controller.cpp -o CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.s
 
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o.requires:
 .PHONY : CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o.requires

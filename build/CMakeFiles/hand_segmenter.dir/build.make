@@ -52,22 +52,32 @@ CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: ../manifest.xml
 CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/manifest.xml
 CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv2_flags/manifest.xml
 CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/eigen_flags/manifest.xml
+CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
+CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /opt/ros/fuerte/share/roscpp_serialization/manifest.xml
+CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/external/pcl_bleeding/manifest.xml
+CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/external/maxflow/manifest.xml
 CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/gzstream/manifest.xml
 CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/timer/manifest.xml
 CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/eigen_extensions/manifest.xml
 CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/serializable/manifest.xml
+CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /opt/ros/fuerte/share/rosconsole/manifest.xml
+CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/name_mapping/manifest.xml
+CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/core/optimization/manifest.xml
+CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/core/pipeline2/manifest.xml
+CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/core/graphcuts/manifest.xml
 CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o: /home/sandra/cs231a/jarvis/ros-pkg/core/image_labeler/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o -c /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/hand_segmenter.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o -c /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/hand_segmenter.cpp
 
 CMakeFiles/hand_segmenter.dir/src/hand_segmenter.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hand_segmenter.dir/src/hand_segmenter.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/hand_segmenter.cpp > CMakeFiles/hand_segmenter.dir/src/hand_segmenter.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/hand_segmenter.cpp > CMakeFiles/hand_segmenter.dir/src/hand_segmenter.i
 
 CMakeFiles/hand_segmenter.dir/src/hand_segmenter.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hand_segmenter.dir/src/hand_segmenter.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/hand_segmenter.cpp -o CMakeFiles/hand_segmenter.dir/src/hand_segmenter.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/hand_segmenter.cpp -o CMakeFiles/hand_segmenter.dir/src/hand_segmenter.s
 
 CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o.requires:
 .PHONY : CMakeFiles/hand_segmenter.dir/src/hand_segmenter.o.requires

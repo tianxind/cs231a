@@ -21,14 +21,18 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #uncomment if you have defined services
 #rosbuild_gensrv()
 
+
+#include_directories(${PCL_INCLUDE_DIRS})
+#link_directories(${PCL_LIBRARY_DIRS})
+#add_definitions(${PCL_DEFINITIONS})
+
 #common commands for building c++ executables and libraries
 rosbuild_add_library(${PROJECT_NAME} src/scene.cpp src/segmentation.cpp
   src/tracked_object.cpp src/sequence.cpp 
   src/hand_segmenter_view_controller.cpp)
-#target_link_libraries(${PROJECT_NAME} another_library)
+#target_link_libraries(${PROJECT_NAME} pcl_bleeding)
 #rosbuild_add_boost_directories()
 #rosbuild_link_boost(${PROJECT_NAME} thread)
-
 rosbuild_add_executable(view_data src/view_data.cpp)
 target_link_libraries(view_data ${PROJECT_NAME})
 
@@ -39,5 +43,8 @@ target_link_libraries(test_inrange ${PROJECT_NAME})
 
 rosbuild_add_executable(hand_segmenter src/hand_segmenter.cpp)
 target_link_libraries(hand_segmenter ${PROJECT_NAME})
+
+rosbuild_add_executable(graphcuts_segmenter src/graphcuts_segmenter.cpp)
+target_link_libraries(graphcuts_segmenter ${PROJECT_NAME})
 
 rosbuild_add_executable(opencv_test src/opencv_test.cpp)
