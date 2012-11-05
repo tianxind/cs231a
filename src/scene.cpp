@@ -29,6 +29,7 @@ void Scene::saveSegmentation() const
 {
   assert(segmentation_);
   string segmentation_path = path_ + "_segmentation.dat";
+  cout << "About to save in " << segmentation_path << "..." << endl;
   segmentation_->save(segmentation_path);
 }
 
