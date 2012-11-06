@@ -161,6 +161,19 @@ clean-test-results/fast:
 .PHONY : clean-test-results/fast
 
 #=============================================================================
+# Target rules for targets named evaluator
+
+# Build rule for target.
+evaluator: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 evaluator
+.PHONY : evaluator
+
+# fast build rule for target.
+evaluator/fast:
+	$(MAKE) -f CMakeFiles/evaluator.dir/build.make CMakeFiles/evaluator.dir/build
+.PHONY : evaluator/fast
+
+#=============================================================================
 # Target rules for targets named graphcuts_segmenter
 
 # Build rule for target.
@@ -369,6 +382,21 @@ view_data/fast:
 .PHONY : view_data/fast
 
 # target to build an object file
+src/evaluator.o:
+	$(MAKE) -f CMakeFiles/evaluator.dir/build.make CMakeFiles/evaluator.dir/src/evaluator.o
+.PHONY : src/evaluator.o
+
+# target to preprocess a source file
+src/evaluator.i:
+	$(MAKE) -f CMakeFiles/evaluator.dir/build.make CMakeFiles/evaluator.dir/src/evaluator.i
+.PHONY : src/evaluator.i
+
+# target to generate assembly for a file
+src/evaluator.s:
+	$(MAKE) -f CMakeFiles/evaluator.dir/build.make CMakeFiles/evaluator.dir/src/evaluator.s
+.PHONY : src/evaluator.s
+
+# target to build an object file
 src/graphcuts_segmenter.o:
 	$(MAKE) -f CMakeFiles/graphcuts_segmenter.dir/build.make CMakeFiles/graphcuts_segmenter.dir/src/graphcuts_segmenter.o
 .PHONY : src/graphcuts_segmenter.o
@@ -530,6 +558,7 @@ help:
 	@echo "... ROSBUILD_gensrv_lisp"
 	@echo "... clean-test-results"
 	@echo "... edit_cache"
+	@echo "... evaluator"
 	@echo "... graphcuts_segmenter"
 	@echo "... hand_segmenter"
 	@echo "... opencv_test"
@@ -547,6 +576,9 @@ help:
 	@echo "... test_inrange"
 	@echo "... tests"
 	@echo "... view_data"
+	@echo "... src/evaluator.o"
+	@echo "... src/evaluator.i"
+	@echo "... src/evaluator.s"
 	@echo "... src/graphcuts_segmenter.o"
 	@echo "... src/graphcuts_segmenter.i"
 	@echo "... src/graphcuts_segmenter.s"

@@ -205,6 +205,42 @@ clean: CMakeFiles/clean-test-results.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/evaluator.dir
+
+# All Build rule for target.
+CMakeFiles/evaluator.dir/all: CMakeFiles/rosbuild_precompile.dir/all
+CMakeFiles/evaluator.dir/all: CMakeFiles/segmentation_and_tracking.dir/all
+	$(MAKE) -f CMakeFiles/evaluator.dir/build.make CMakeFiles/evaluator.dir/depend
+	$(MAKE) -f CMakeFiles/evaluator.dir/build.make CMakeFiles/evaluator.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  1
+	@echo "Built target evaluator"
+.PHONY : CMakeFiles/evaluator.dir/all
+
+# Include target in all.
+all: CMakeFiles/evaluator.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/evaluator.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/evaluator.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles 0
+.PHONY : CMakeFiles/evaluator.dir/rule
+
+# Convenience name for target.
+evaluator: CMakeFiles/evaluator.dir/rule
+.PHONY : evaluator
+
+# clean rule for target.
+CMakeFiles/evaluator.dir/clean:
+	$(MAKE) -f CMakeFiles/evaluator.dir/build.make CMakeFiles/evaluator.dir/clean
+.PHONY : CMakeFiles/evaluator.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/evaluator.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/graphcuts_segmenter.dir
 
 # All Build rule for target.
@@ -212,7 +248,7 @@ CMakeFiles/graphcuts_segmenter.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/graphcuts_segmenter.dir/all: CMakeFiles/segmentation_and_tracking.dir/all
 	$(MAKE) -f CMakeFiles/graphcuts_segmenter.dir/build.make CMakeFiles/graphcuts_segmenter.dir/depend
 	$(MAKE) -f CMakeFiles/graphcuts_segmenter.dir/build.make CMakeFiles/graphcuts_segmenter.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  2
 	@echo "Built target graphcuts_segmenter"
 .PHONY : CMakeFiles/graphcuts_segmenter.dir/all
 
@@ -248,7 +284,7 @@ CMakeFiles/hand_segmenter.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/hand_segmenter.dir/all: CMakeFiles/segmentation_and_tracking.dir/all
 	$(MAKE) -f CMakeFiles/hand_segmenter.dir/build.make CMakeFiles/hand_segmenter.dir/depend
 	$(MAKE) -f CMakeFiles/hand_segmenter.dir/build.make CMakeFiles/hand_segmenter.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  2
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  3
 	@echo "Built target hand_segmenter"
 .PHONY : CMakeFiles/hand_segmenter.dir/all
 
@@ -283,7 +319,7 @@ clean: CMakeFiles/hand_segmenter.dir/clean
 CMakeFiles/opencv_test.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 	$(MAKE) -f CMakeFiles/opencv_test.dir/build.make CMakeFiles/opencv_test.dir/depend
 	$(MAKE) -f CMakeFiles/opencv_test.dir/build.make CMakeFiles/opencv_test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  3
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  4
 	@echo "Built target opencv_test"
 .PHONY : CMakeFiles/opencv_test.dir/all
 
@@ -475,7 +511,7 @@ clean: CMakeFiles/rospack_gensrv.dir/clean
 CMakeFiles/segmentation_and_tracking.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 	$(MAKE) -f CMakeFiles/segmentation_and_tracking.dir/build.make CMakeFiles/segmentation_and_tracking.dir/depend
 	$(MAKE) -f CMakeFiles/segmentation_and_tracking.dir/build.make CMakeFiles/segmentation_and_tracking.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  4 5 6 7 8
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  5 6 7 8 9
 	@echo "Built target segmentation_and_tracking"
 .PHONY : CMakeFiles/segmentation_and_tracking.dir/all
 
@@ -635,7 +671,7 @@ CMakeFiles/test_inrange.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/test_inrange.dir/all: CMakeFiles/segmentation_and_tracking.dir/all
 	$(MAKE) -f CMakeFiles/test_inrange.dir/build.make CMakeFiles/test_inrange.dir/depend
 	$(MAKE) -f CMakeFiles/test_inrange.dir/build.make CMakeFiles/test_inrange.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  9
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  10
 	@echo "Built target test_inrange"
 .PHONY : CMakeFiles/test_inrange.dir/all
 
@@ -702,7 +738,7 @@ CMakeFiles/view_data.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/view_data.dir/all: CMakeFiles/segmentation_and_tracking.dir/all
 	$(MAKE) -f CMakeFiles/view_data.dir/build.make CMakeFiles/view_data.dir/depend
 	$(MAKE) -f CMakeFiles/view_data.dir/build.make CMakeFiles/view_data.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  10
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  11
 	@echo "Built target view_data"
 .PHONY : CMakeFiles/view_data.dir/all
 

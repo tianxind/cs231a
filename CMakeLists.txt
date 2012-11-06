@@ -47,4 +47,7 @@ target_link_libraries(hand_segmenter ${PROJECT_NAME})
 rosbuild_add_executable(graphcuts_segmenter src/graphcuts_segmenter.cpp)
 target_link_libraries(graphcuts_segmenter ${PROJECT_NAME})
 
+rosbuild_add_executable(evaluator src/evaluator.cpp)
+target_link_libraries(evaluator ${PROJECT_NAME})
+
 rosbuild_add_executable(opencv_test src/opencv_test.cpp)
