@@ -61,6 +61,11 @@ pcl::KdTreeFLANN<pcl::PointXYZ>* buildForegroundKdTree(Scene& seed_frame) {
     }
   }
   cout<<"foreground cloud size: "<< fg_cloud->width<< " "<<cloud_index<<endl; 
+  if(fg_cloud->width == 0)
+  {
+    return NULL;
+  }
+
   fg_tree->setInputCloud(fg_cloud);
   return fg_tree;
 }
@@ -204,6 +209,8 @@ int main(int argc, char** argv)
     cout << "Tracking image in frame " << i << endl;
     graphCutsSegmentation(fg_kdtree, target_frame);
     fg_kdtree = buildForegroundKdTree(target_frame);
+    // quit the program if there is no segmentation
+    if(fg_kdtree==NULL)break;
     // Find the closest object each segmented point belongs to 
   }
   return 0;

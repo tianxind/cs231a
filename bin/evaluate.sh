@@ -1,4 +1,4 @@
-for sigma in 0.15 0.25 0.5 1 2 4
+for sigma in 0.0625 0.125 0.25
 do 
     cp ~/cs231a/sequence01/1288572831.002852_segmentation.dat ~/cs231a/sequence01/1288572831.002852_segmentation.dat2
     rm ~/cs231a/sequence01/*segmentation.dat
