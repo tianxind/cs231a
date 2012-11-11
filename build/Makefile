@@ -200,19 +200,6 @@ hand_segmenter/fast:
 .PHONY : hand_segmenter/fast
 
 #=============================================================================
-# Target rules for targets named opencv_test
-
-# Build rule for target.
-opencv_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 opencv_test
-.PHONY : opencv_test
-
-# fast build rule for target.
-opencv_test/fast:
-	$(MAKE) -f CMakeFiles/opencv_test.dir/build.make CMakeFiles/opencv_test.dir/build
-.PHONY : opencv_test/fast
-
-#=============================================================================
 # Target rules for targets named rosbuild_precompile
 
 # Build rule for target.
@@ -343,19 +330,6 @@ test-results-run/fast:
 .PHONY : test-results-run/fast
 
 #=============================================================================
-# Target rules for targets named test_inrange
-
-# Build rule for target.
-test_inrange: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_inrange
-.PHONY : test_inrange
-
-# fast build rule for target.
-test_inrange/fast:
-	$(MAKE) -f CMakeFiles/test_inrange.dir/build.make CMakeFiles/test_inrange.dir/build
-.PHONY : test_inrange/fast
-
-#=============================================================================
 # Target rules for targets named tests
 
 # Build rule for target.
@@ -442,21 +416,6 @@ src/hand_segmenter_view_controller.s:
 .PHONY : src/hand_segmenter_view_controller.s
 
 # target to build an object file
-src/opencv_test.o:
-	$(MAKE) -f CMakeFiles/opencv_test.dir/build.make CMakeFiles/opencv_test.dir/src/opencv_test.o
-.PHONY : src/opencv_test.o
-
-# target to preprocess a source file
-src/opencv_test.i:
-	$(MAKE) -f CMakeFiles/opencv_test.dir/build.make CMakeFiles/opencv_test.dir/src/opencv_test.i
-.PHONY : src/opencv_test.i
-
-# target to generate assembly for a file
-src/opencv_test.s:
-	$(MAKE) -f CMakeFiles/opencv_test.dir/build.make CMakeFiles/opencv_test.dir/src/opencv_test.s
-.PHONY : src/opencv_test.s
-
-# target to build an object file
 src/scene.o:
 	$(MAKE) -f CMakeFiles/segmentation_and_tracking.dir/build.make CMakeFiles/segmentation_and_tracking.dir/src/scene.o
 .PHONY : src/scene.o
@@ -500,21 +459,6 @@ src/sequence.i:
 src/sequence.s:
 	$(MAKE) -f CMakeFiles/segmentation_and_tracking.dir/build.make CMakeFiles/segmentation_and_tracking.dir/src/sequence.s
 .PHONY : src/sequence.s
-
-# target to build an object file
-src/test_inrange.o:
-	$(MAKE) -f CMakeFiles/test_inrange.dir/build.make CMakeFiles/test_inrange.dir/src/test_inrange.o
-.PHONY : src/test_inrange.o
-
-# target to preprocess a source file
-src/test_inrange.i:
-	$(MAKE) -f CMakeFiles/test_inrange.dir/build.make CMakeFiles/test_inrange.dir/src/test_inrange.i
-.PHONY : src/test_inrange.i
-
-# target to generate assembly for a file
-src/test_inrange.s:
-	$(MAKE) -f CMakeFiles/test_inrange.dir/build.make CMakeFiles/test_inrange.dir/src/test_inrange.s
-.PHONY : src/test_inrange.s
 
 # target to build an object file
 src/tracked_object.o:
@@ -561,7 +505,6 @@ help:
 	@echo "... evaluator"
 	@echo "... graphcuts_segmenter"
 	@echo "... hand_segmenter"
-	@echo "... opencv_test"
 	@echo "... rebuild_cache"
 	@echo "... rosbuild_precompile"
 	@echo "... rosbuild_premsgsrvgen"
@@ -573,7 +516,6 @@ help:
 	@echo "... test-future"
 	@echo "... test-results"
 	@echo "... test-results-run"
-	@echo "... test_inrange"
 	@echo "... tests"
 	@echo "... view_data"
 	@echo "... src/evaluator.o"
@@ -588,9 +530,6 @@ help:
 	@echo "... src/hand_segmenter_view_controller.o"
 	@echo "... src/hand_segmenter_view_controller.i"
 	@echo "... src/hand_segmenter_view_controller.s"
-	@echo "... src/opencv_test.o"
-	@echo "... src/opencv_test.i"
-	@echo "... src/opencv_test.s"
 	@echo "... src/scene.o"
 	@echo "... src/scene.i"
 	@echo "... src/scene.s"
@@ -600,9 +539,6 @@ help:
 	@echo "... src/sequence.o"
 	@echo "... src/sequence.i"
 	@echo "... src/sequence.s"
-	@echo "... src/test_inrange.o"
-	@echo "... src/test_inrange.i"
-	@echo "... src/test_inrange.s"
 	@echo "... src/tracked_object.o"
 	@echo "... src/tracked_object.i"
 	@echo "... src/tracked_object.s"

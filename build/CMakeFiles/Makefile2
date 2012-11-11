@@ -313,41 +313,6 @@ clean: CMakeFiles/hand_segmenter.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/opencv_test.dir
-
-# All Build rule for target.
-CMakeFiles/opencv_test.dir/all: CMakeFiles/rosbuild_precompile.dir/all
-	$(MAKE) -f CMakeFiles/opencv_test.dir/build.make CMakeFiles/opencv_test.dir/depend
-	$(MAKE) -f CMakeFiles/opencv_test.dir/build.make CMakeFiles/opencv_test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  4
-	@echo "Built target opencv_test"
-.PHONY : CMakeFiles/opencv_test.dir/all
-
-# Include target in all.
-all: CMakeFiles/opencv_test.dir/all
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/opencv_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/opencv_test.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles 0
-.PHONY : CMakeFiles/opencv_test.dir/rule
-
-# Convenience name for target.
-opencv_test: CMakeFiles/opencv_test.dir/rule
-.PHONY : opencv_test
-
-# clean rule for target.
-CMakeFiles/opencv_test.dir/clean:
-	$(MAKE) -f CMakeFiles/opencv_test.dir/build.make CMakeFiles/opencv_test.dir/clean
-.PHONY : CMakeFiles/opencv_test.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/opencv_test.dir/clean
-.PHONY : clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/rosbuild_precompile.dir
 
 # All Build rule for target.
@@ -511,7 +476,7 @@ clean: CMakeFiles/rospack_gensrv.dir/clean
 CMakeFiles/segmentation_and_tracking.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 	$(MAKE) -f CMakeFiles/segmentation_and_tracking.dir/build.make CMakeFiles/segmentation_and_tracking.dir/depend
 	$(MAKE) -f CMakeFiles/segmentation_and_tracking.dir/build.make CMakeFiles/segmentation_and_tracking.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  5 6 7 8 9
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  4 5 6 7 8
 	@echo "Built target segmentation_and_tracking"
 .PHONY : CMakeFiles/segmentation_and_tracking.dir/all
 
@@ -664,42 +629,6 @@ clean: CMakeFiles/test-results-run.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/test_inrange.dir
-
-# All Build rule for target.
-CMakeFiles/test_inrange.dir/all: CMakeFiles/rosbuild_precompile.dir/all
-CMakeFiles/test_inrange.dir/all: CMakeFiles/segmentation_and_tracking.dir/all
-	$(MAKE) -f CMakeFiles/test_inrange.dir/build.make CMakeFiles/test_inrange.dir/depend
-	$(MAKE) -f CMakeFiles/test_inrange.dir/build.make CMakeFiles/test_inrange.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  10
-	@echo "Built target test_inrange"
-.PHONY : CMakeFiles/test_inrange.dir/all
-
-# Include target in all.
-all: CMakeFiles/test_inrange.dir/all
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/test_inrange.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles 6
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_inrange.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles 0
-.PHONY : CMakeFiles/test_inrange.dir/rule
-
-# Convenience name for target.
-test_inrange: CMakeFiles/test_inrange.dir/rule
-.PHONY : test_inrange
-
-# clean rule for target.
-CMakeFiles/test_inrange.dir/clean:
-	$(MAKE) -f CMakeFiles/test_inrange.dir/build.make CMakeFiles/test_inrange.dir/clean
-.PHONY : CMakeFiles/test_inrange.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/test_inrange.dir/clean
-.PHONY : clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/tests.dir
 
 # All Build rule for target.
@@ -738,7 +667,7 @@ CMakeFiles/view_data.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/view_data.dir/all: CMakeFiles/segmentation_and_tracking.dir/all
 	$(MAKE) -f CMakeFiles/view_data.dir/build.make CMakeFiles/view_data.dir/depend
 	$(MAKE) -f CMakeFiles/view_data.dir/build.make CMakeFiles/view_data.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  11
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  9
 	@echo "Built target view_data"
 .PHONY : CMakeFiles/view_data.dir/all
 
