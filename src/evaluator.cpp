@@ -29,7 +29,7 @@ void insertIndexIntoSet(vector<TrackedObject>& to, set<int>& s) {
   } 
 }
 
-void reportMetrics(set<int>& result, set<int>& golden) {
+double reportMetrics(set<int>& result, set<int>& golden) {
   vector<int> true_positives(result.size() + golden.size());
   vector<int>::iterator it;
   it = set_intersection(result.begin(), result.end(), golden.begin(), golden.end(), true_positives.begin());
@@ -39,15 +39,16 @@ void reportMetrics(set<int>& result, set<int>& golden) {
   double f1 = (precision * recall * 2)/(precision + recall);
   cout << "True positives: " << num_tp << ", Precision: " << precision
        << " Recall: " << recall
-       << " F-1 score: " << f1 << endl; 
+       << " F-1 score: " << f1 << endl;
+  return f1; 
 }
 
-void evaluateSegmentation(Scene& result_scene, Scene& golden_scene) {
+double evaluateSegmentation(Scene& result_scene, Scene& golden_scene) {
   set<int> result;
   set<int> golden;
   insertIndexIntoSet(result_scene.segmentation_->tracked_objects_, result); 
   insertIndexIntoSet(golden_scene.segmentation_->tracked_objects_, golden); 
-  reportMetrics(result, golden);
+  return reportMetrics(result, golden);
 }
 
 int main(int argc, char** argv)
@@ -66,9 +67,11 @@ int main(int argc, char** argv)
   }
   Sequence result_seq(result_path);
   Sequence golden_seq(golden_path);
+  double f1 = 0.0;
   for (size_t i = 1; i < result_seq.size(); ++i) {
     cout << "Evaluating frame " << i << endl;
-    evaluateSegmentation(*result_seq.getScene(i), *golden_seq.getScene(i));
+    f1 += evaluateSegmentation(*result_seq.getScene(i), *golden_seq.getScene(i));
   }
+  cout << "Average f1 is: " << f1 / (result_seq.size() - 1);
   return 0;
 }
