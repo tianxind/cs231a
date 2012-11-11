@@ -16,6 +16,8 @@ namespace {
   static const int vmin = 10, vmax = 256, smin = 30;
 }
 
+double sum_f1 = 0;
+
 string usageString()
 {
   ostringstream oss;
@@ -34,13 +36,14 @@ double reportMetrics(set<int>& result, set<int>& golden) {
   vector<int>::iterator it;
   it = set_intersection(result.begin(), result.end(), golden.begin(), golden.end(), true_positives.begin());
   int num_tp = int(it - true_positives.begin());
-  double precision = (double) num_tp / result.size();
-  double recall = (double) num_tp / golden.size();
-  double f1 = (precision * recall * 2)/(precision + recall);
+  double norm_ = 0.001;
+  double precision = (double) num_tp / (result.size()+norm_);
+  double recall = (double) num_tp / (golden.size()+norm_);
+  double f1 = (precision * recall * 2)/(precision + recall+norm_);
   cout << "True positives: " << num_tp << ", Precision: " << precision
        << " Recall: " << recall
-       << " F-1 score: " << f1 << endl;
-  return f1; 
+       << " F-1 score: " << f1 << endl; 
+  sum_f1 += f1;
 }
 
 double evaluateSegmentation(Scene& result_scene, Scene& golden_scene) {
@@ -70,8 +73,9 @@ int main(int argc, char** argv)
   double f1 = 0.0;
   for (size_t i = 1; i < result_seq.size(); ++i) {
     cout << "Evaluating frame " << i << endl;
-    f1 += evaluateSegmentation(*result_seq.getScene(i), *golden_seq.getScene(i));
+    evaluateSegmentation(*result_seq.getScene(i), *golden_seq.getScene(i));
+    cout<< "Accumulative f1 score " << (double)sum_f1/result_seq.size()<<endl; 
   }
-  cout << "Average f1 is: " << f1 / (result_seq.size() - 1);
+  cout<< "Average f1 score " << (double)sum_f1/result_seq.size()<<endl; 
   return 0;
 }
