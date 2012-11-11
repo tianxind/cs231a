@@ -30,10 +30,6 @@ pcl::KdTreeFLANN<pcl::PointXYZ>* buildForegroundKdTree(Scene& seed_frame) {
   pcl::KdTreeFLANN<pcl::PointXYZ>* fg_tree = new pcl::KdTreeFLANN<pcl::PointXYZ>();
   pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud (new pcl::PointCloud<pcl::PointXYZ>);
   int num_points = 0;
-  // if (seed_objects.size() > 1)
-  //   num_points += seed_objects[1].indices_.size();
-  // else
-  //num_points += seed_objects[0].indices_.size();
   for (size_t i = 0; i < seed_objects.size(); ++i) {
     num_points += seed_objects[i].indices_.size();
   }
@@ -41,22 +37,12 @@ pcl::KdTreeFLANN<pcl::PointXYZ>* buildForegroundKdTree(Scene& seed_frame) {
   fg_cloud->height = 1;
   fg_cloud->points.resize(fg_cloud->width * fg_cloud->height);
   int cloud_index = 0;
-  //vector<int>& indices = seed_objects[0].indices_;
-  // if (seed_objects.size() > 1)
-  //  indices = seed_objects[1].indices_;
-  // else 
-  //  indices = seed_objects[0].indices_;
-  /*for (size_t j = 0; j < indices.size(); ++j) {
-    fg_cloud->points[cloud_index].x = seed_frame.cloud_cam_(indices[j], 0); 
-    fg_cloud->points[cloud_index].y = seed_frame.cloud_cam_(indices[j], 1);
-    fg_cloud->points[cloud_index].z = seed_frame.cloud_cam_(indices[j], 2);  
-  }*/
   for (size_t i = 0; i < seed_objects.size(); ++i) {
     vector<int>& indices = seed_objects[i].indices_;
     for (size_t j = 0; j < indices.size(); ++j) {
-      fg_cloud->points[cloud_index].x = seed_frame.cloud_cam_(indices[j], 0); 
-      fg_cloud->points[cloud_index].y = seed_frame.cloud_cam_(indices[j], 1);
-      fg_cloud->points[cloud_index].z = seed_frame.cloud_cam_(indices[j], 2);  
+      fg_cloud->points[cloud_index].x = seed_frame.cloud_smooth_(indices[j], 0); 
+      fg_cloud->points[cloud_index].y = seed_frame.cloud_smooth_(indices[j], 1);
+      fg_cloud->points[cloud_index].z = seed_frame.cloud_smooth_(indices[j], 2);  
       cloud_index++;
     }
   }
@@ -70,29 +56,29 @@ pcl::KdTreeFLANN<pcl::PointXYZ>* buildForegroundKdTree(Scene& seed_frame) {
   return fg_tree;
 }
 
-pcl::KdTreeFLANN<pcl::PointXYZ>* buildKdTree(Eigen::MatrixXf& cloud_cam_) {
-  int num_points = cloud_cam_.rows();
+pcl::KdTreeFLANN<pcl::PointXYZ>* buildKdTree(Eigen::MatrixXf& cloud_smooth_) {
+  int num_points = cloud_smooth_.rows();
   pcl::KdTreeFLANN<pcl::PointXYZ>* kdtree = new pcl::KdTreeFLANN<pcl::PointXYZ>();
   pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>);
   cloud->width = num_points;
   cloud->height = 1;
   cloud->points.resize(cloud->width * cloud->height);
   for (int i = 0; i < num_points; ++i) {
-    cloud->points[i].x = cloud_cam_(i, 0); 
-    cloud->points[i].y = cloud_cam_(i, 1);
-    cloud->points[i].z = cloud_cam_(i, 2);  
+    cloud->points[i].x = cloud_smooth_(i, 0); 
+    cloud->points[i].y = cloud_smooth_(i, 1);
+    cloud->points[i].z = cloud_smooth_(i, 2);  
   }
   kdtree->setInputCloud(cloud);
   return kdtree;
 }
 
-double distToPrevForeground(Eigen::MatrixXf& cloud_cam_,
+double distToPrevForeground(Eigen::MatrixXf& cloud_smooth_,
                             int index,
                             pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree) {
   pcl::PointXYZ search_point;
-  search_point.x = cloud_cam_(index, 0);
-  search_point.y = cloud_cam_(index, 1);
-  search_point.z = cloud_cam_(index, 2);
+  search_point.x = cloud_smooth_(index, 0);
+  search_point.y = cloud_smooth_(index, 1);
+  search_point.z = cloud_smooth_(index, 2);
   /*cout << "Searching nearest neighbor for point ("
        << search_point.x << ", "
        << search_point.y << ", "
@@ -104,15 +90,15 @@ double distToPrevForeground(Eigen::MatrixXf& cloud_cam_,
   return distance[0];
 }
 
-void addEdgesWithinRadius(Eigen::MatrixXf& cloud_cam_,
+void addEdgesWithinRadius(Eigen::MatrixXf& cloud_smooth_,
                           int index,
                           float radius,
                           pcl::KdTreeFLANN<pcl::PointXYZ>* kdtree,
                           graphcuts::Graph3dPtr graph) {
   pcl::PointXYZ search_point;
-  search_point.x = cloud_cam_(index, 0);
-  search_point.y = cloud_cam_(index, 1);
-  search_point.z = cloud_cam_(index, 2);
+  search_point.x = cloud_smooth_(index, 0);
+  search_point.y = cloud_smooth_(index, 1);
+  search_point.z = cloud_smooth_(index, 2);
   vector<int> neighbors;
   vector<float> distances;
   kdtree->radiusSearch(search_point, radius, neighbors, distances);
@@ -132,7 +118,7 @@ void generateSegmentationFromGraph(graphcuts::Graph3dPtr graph,
                                    Scene& target_frame) {
   TrackedObject to;
   int foreground_num = 0;
-  for (int i = 0; i < target_frame.cloud_cam_.rows(); ++i) {
+  for (int i = 0; i < target_frame.cloud_smooth_.rows(); ++i) {
     if (graph->what_segment(i, Graph<double, double, double>::SINK) ==
         Graph<double, double, double>::SOURCE) {
       to.indices_.push_back(i);
@@ -155,15 +141,15 @@ double sourcePotential(double dist, double sigma) {
 
 void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
                            Scene& target_frame) {
-  Eigen::MatrixXf cloud_cam_ = target_frame.cloud_cam_;
-  int num_nodes = cloud_cam_.rows();
+  Eigen::MatrixXf cloud_smooth_ = target_frame.cloud_smooth_;
+  int num_nodes = cloud_smooth_.rows();
   graphcuts::Graph3dPtr graph_ = 
-    graphcuts::Graph3dPtr(new graphcuts::Graph3d(num_nodes, cloud_cam_.rows() * 10));
+    graphcuts::Graph3dPtr(new graphcuts::Graph3d(num_nodes, cloud_smooth_.rows() * 10));
   // Add nodes and node potentials
   cout << "Adding nodes to graph..." << endl;
   graph_->add_node(num_nodes);
   for (int i = 0; i < num_nodes; ++i) {
-    double dist = distToPrevForeground(cloud_cam_, i, fg_kdtree);
+    double dist = distToPrevForeground(cloud_smooth_, i, fg_kdtree);
     double src_pot = sourcePotential(dist, DEPG_SIGMA);
     double snk_pot = sinkPotential(dist, DEPG_SIGMA);
     graph_->add_tweights(i, src_pot, snk_pot);
@@ -172,10 +158,10 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
   // Add edges and edge potentials
   // First construct kdtree for current image
   cout << "Build kdtree for current image..." << endl;
-  pcl::KdTreeFLANN<pcl::PointXYZ>* kdtree = buildKdTree(cloud_cam_);
+  pcl::KdTreeFLANN<pcl::PointXYZ>* kdtree = buildKdTree(cloud_smooth_);
   cout << "Adding edges and edge potentials..." << endl; 
   for (int i = 0; i < num_nodes; ++i) {
-    addEdgesWithinRadius(cloud_cam_, i, 0.15, kdtree, graph_);
+    addEdgesWithinRadius(cloud_smooth_, i, 0.15, kdtree, graph_);
   }
   cout << "Running max flow..." << endl;
   graph_->maxflow();

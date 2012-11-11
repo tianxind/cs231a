@@ -1,0 +1,13 @@
+for sigma in 0.15
+do 
+    cp ~/cs231a/sequence01/1288572831.002852_segmentation.dat ~/cs231a/sequence01/1288572831.002852_segmentation.dat2
+    rm ~/cs231a/sequence01/*segmentation.dat
+    cp ~/cs231a/sequence01/1288572831.002852_segmentation.dat2 ~/cs231a/sequence01/1288572831.002852_segmentation.dat
+    export DEPG_SIGMA=$sigma
+    ./graphcuts_segmenter ~/cs231a/sequence01
+    filename="result$sigma"
+    ./evaluator ~/cs231a/sequence01 ~/cs231a/golden01 > $filename
+done
+cp ~/cs231a/sequence01/1288572831.002852_segmentation.dat ~/cs231a/sequence01/1288572831.002852_segmentation.dat2
+rm ~/cs231a/sequence01/*segmentation.dat
+cp ~/cs231a/sequence01/1288572831.002852_segmentation.dat2 ~/cs231a/sequence01/1288572831.002852_segmentation.dat

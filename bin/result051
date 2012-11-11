@@ -1,0 +1,115 @@
+4 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+4 tracked objects
+3 tracked objects
+3 tracked objects
+3 tracked objects
+3 tracked objects
+3 tracked objects
+3 tracked objects
+Evaluating frame 1
+True positives: 1490 False positives: 436 Foreground size: 1564 Norm accuracy: 0.673913
+Evaluating frame 2
+True positives: 1508 False positives: 945 Foreground size: 1581 Norm accuracy: 0.356104
+Evaluating frame 3
+True positives: 1372 False positives: 1617 Foreground size: 1458 Norm accuracy: 0
+Evaluating frame 4
+True positives: 1516 False positives: 2171 Foreground size: 1583 Norm accuracy: 0
+Evaluating frame 5
+True positives: 1627 False positives: 3167 Foreground size: 1776 Norm accuracy: 0
+Evaluating frame 6
+True positives: 1726 False positives: 3998 Foreground size: 1843 Norm accuracy: 0
+Evaluating frame 7
+True positives: 1806 False positives: 5318 Foreground size: 1958 Norm accuracy: 0
+Evaluating frame 8
+True positives: 1932 False positives: 6662 Foreground size: 2002 Norm accuracy: 0
+Evaluating frame 9
+True positives: 1965 False positives: 9131 Foreground size: 2076 Norm accuracy: 0
+Evaluating frame 10
+True positives: 2037 False positives: 11463 Foreground size: 2142 Norm accuracy: 0
+Evaluating frame 11
+True positives: 2114 False positives: 16003 Foreground size: 2203 Norm accuracy: 0
+Evaluating frame 12
+True positives: 2270 False positives: 16648 Foreground size: 2354 Norm accuracy: 0
+Evaluating frame 13
+True positives: 2939 False positives: 17029 Foreground size: 3053 Norm accuracy: 0
+Evaluating frame 14
+True positives: 3267 False positives: 17764 Foreground size: 3450 Norm accuracy: 0
+Evaluating frame 15
+True positives: 3510 False positives: 17948 Foreground size: 3636 Norm accuracy: 0
+Evaluating frame 16
+True positives: 3543 False positives: 17939 Foreground size: 3699 Norm accuracy: 0
+Evaluating frame 17
+True positives: 3627 False positives: 17667 Foreground size: 3768 Norm accuracy: 0
+Evaluating frame 18
+True positives: 3628 False positives: 17726 Foreground size: 3670 Norm accuracy: 0
+Evaluating frame 19
+True positives: 3407 False positives: 18231 Foreground size: 3442 Norm accuracy: 0
+Evaluating frame 20
+True positives: 3404 False positives: 18410 Foreground size: 3417 Norm accuracy: 0
+Evaluating frame 21
+True positives: 3437 False positives: 18594 Foreground size: 3468 Norm accuracy: 0
+Evaluating frame 22
+True positives: 3221 False positives: 18981 Foreground size: 3269 Norm accuracy: 0
+Evaluating frame 23
+True positives: 3131 False positives: 18970 Foreground size: 3172 Norm accuracy: 0
+Evaluating frame 24
+True positives: 3203 False positives: 18904 Foreground size: 3216 Norm accuracy: 0
+Evaluating frame 25
+True positives: 3661 False positives: 18553 Foreground size: 3678 Norm accuracy: 0
+Evaluating frame 26
+True positives: 3657 False positives: 18298 Foreground size: 3657 Norm accuracy: 0
+Evaluating frame 27
+True positives: 3446 False positives: 18530 Foreground size: 3446 Norm accuracy: 0
+Evaluating frame 28
+True positives: 3413 False positives: 18653 Foreground size: 3413 Norm accuracy: 0
+Average accuracy across all frames: 0.0367863
