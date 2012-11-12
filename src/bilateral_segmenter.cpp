@@ -28,10 +28,10 @@ string usageString()
   return oss.str();
 }
 
-pcl::KdTreeFLANN<pcl::PointXYZ>* buildForegroundKdTree(Scene& seed_frame) {
+pcl::KdTreeFLANN<pcl::PointXYZ>* buildForegroundKdTree(Scene& seed_frame, pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud) {
   vector<TrackedObject>& seed_objects = seed_frame.segmentation_->tracked_objects_;
   pcl::KdTreeFLANN<pcl::PointXYZ>* fg_tree = new pcl::KdTreeFLANN<pcl::PointXYZ>();
-  pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud (new pcl::PointCloud<pcl::PointXYZ>);
+  
   int num_points = 0;
   for (size_t i = 0; i < seed_objects.size(); ++i) {
     num_points += seed_objects[i].indices_.size();
@@ -63,16 +63,17 @@ pcl::KdTreeFLANN<pcl::PointXYZ>* buildKdTree(Eigen::MatrixXf& cloud_smooth_, pcl
   int num_points = cloud_smooth_.rows();
   pcl::KdTreeFLANN<pcl::PointXYZ>* kdtree = new pcl::KdTreeFLANN<pcl::PointXYZ>();
   //pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>);
-  //cloud = new pcl::PointCloud<pcl::PointXYZ>();
+  //cloud = (new pcl::PointCloud<pcl::PointXYZ>);
   cloud->width = num_points;
   cloud->height = 1;
-  cloud->points.resize(cloud->width * cloud->height);
+  cloud->points.resize((cloud->width) * (cloud->height));
   for (int i = 0; i < num_points; ++i) {
     cloud->points[i].x = cloud_smooth_(i, 0); 
     cloud->points[i].y = cloud_smooth_(i, 1);
     cloud->points[i].z = cloud_smooth_(i, 2);  
   }
   kdtree->setInputCloud(cloud);
+  //whole_cloud = cloud;
   return kdtree;
 }
 
@@ -144,23 +145,28 @@ void aggregatePotential(int node_index,
 
 bool isForeground(pcl::PointXYZ& node,
                   int neighbor_id,
-                  pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree) {
+                  pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
+                  pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud) {
   vector<int> nearest(1);
   vector<float> distance(1);
+  //cout<<"###### isFoureground ing ";
+  //cout<< node.x<<endl;
   fg_kdtree->nearestKSearch(node, 1, nearest, distance);
-  //bool isForeground = true;
-  //if(abs(nearest[0].x - node.x) > 1E-6) isForeground = false;
-  //if(abs(nearest[0].y - node.y) > 1E-6) isForeground = false;
-  //if(abs(nearest[0].z - node.z) > 1E-6) isForeground = false;
-  //return isForeground;
+  bool isForeground = true;
+  pcl::PointXYZ& nearest_node = fg_cloud->points[nearest[0]];
+  if(abs(nearest_node.x - node.x) > 1E-6) isForeground = false;
+  if(abs(nearest_node.y - node.y) > 1E-6) isForeground = false;
+  if(abs(nearest_node.z - node.z) > 1E-6) isForeground = false;
+  return isForeground;
 
-  return nearest[0]==neighbor_id;
+  //return nearest[0]==neighbor_id;
 }
 
 void addBilateralPotential(pcl::PointXYZ& node,
                            pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
                            pcl::KdTreeFLANN<pcl::PointXYZ>* whole_kdtree,
-                           pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,
+                           pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud,
+                           pcl::PointCloud<pcl::PointXYZ>::Ptr whole_cloud,
                            double radius,
                            vector<double>& src_potentials,
                            vector<double>& snk_potentials) {
@@ -176,8 +182,8 @@ void addBilateralPotential(pcl::PointXYZ& node,
   for (size_t i = 0; i < neighbors.size(); ++i) {
     int label = 0;
     int neighbor_id = neighbors[i];
-    pcl::PointXYZ& node = cloud->points[neighbors[i]];
-    if (isForeground(node, neighbor_id, fg_kdtree)) {
+    pcl::PointXYZ& node = whole_cloud->points[neighbors[i]];
+    if (isForeground(node, neighbor_id, fg_kdtree, fg_cloud)) {
       label = 1;
     } else {
       label = -1;
@@ -196,7 +202,8 @@ void addBilateralPotential(pcl::PointXYZ& node,
 
 void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
                            pcl::KdTreeFLANN<pcl::PointXYZ>* whole_kdtree,
-                           pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,
+                           pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud,
+                           pcl::PointCloud<pcl::PointXYZ>::Ptr whole_cloud,
                            Scene& target_frame) {
   Eigen::MatrixXf cloud_smooth_ = target_frame.cloud_smooth_;
   int num_nodes = cloud_smooth_.rows();
@@ -214,7 +221,7 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
     // Add node potential computed from distance to previous foreground
     addDistToForegroundPotential(node, fg_kdtree, src_potentials, snk_potentials);
 
-    addBilateralPotential(node, fg_kdtree, whole_kdtree, cloud, 0.15, src_potentials, snk_potentials);
+    addBilateralPotential(node, fg_kdtree, whole_kdtree, fg_cloud, whole_cloud, 0.15, src_potentials, snk_potentials);
     // Aggregate two potentials using predefined weights, and add the potential to graph
     aggregatePotential(i, src_potentials, snk_potentials, graph_);
     //cout << "Node dist: " << dist << " (source) " << src_pot << " (sink) " << snk_pot << endl;
@@ -224,7 +231,7 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
   cout << "Build kdtree for current image..." << endl;
   cout << "Adding edges and edge potentials..." << endl; 
   //pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>);
-  pcl::KdTreeFLANN<pcl::PointXYZ>* kdtree = buildKdTree(target_frame.cloud_smooth_, cloud);
+  pcl::KdTreeFLANN<pcl::PointXYZ>* kdtree = buildKdTree(target_frame.cloud_smooth_, whole_cloud);
   for (int i = 0; i < num_nodes; ++i) {
     addEdgesWithinRadius(cloud_smooth_, i, 0.15, kdtree, graph_);
   }
@@ -252,15 +259,18 @@ int main(int argc, char** argv)
   Scene& seed_frame = *seq.getScene(0);
   // Construct seed segmentation KdTree
   cout << "Construct seed frame kdtree..." << endl;
-  pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree = buildForegroundKdTree(seed_frame);
-  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>);
-  pcl::KdTreeFLANN<pcl::PointXYZ>* whole_kdtree = buildKdTree(seed_frame.cloud_smooth_, cloud);
+
+  pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud (new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr whole_cloud (new pcl::PointCloud<pcl::PointXYZ>);
+
+  pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree = buildForegroundKdTree(seed_frame, fg_cloud);
+  pcl::KdTreeFLANN<pcl::PointXYZ>* whole_kdtree = buildKdTree(seed_frame.cloud_smooth_, whole_cloud);
 
   for (size_t i = 1; i < seq.size(); ++i) {
     Scene& target_frame = *seq.getScene(i);
     cout << "Tracking image in frame " << i << endl;
-    graphCutsSegmentation(fg_kdtree, whole_kdtree, cloud, target_frame);
-    fg_kdtree = buildForegroundKdTree(target_frame);
+    graphCutsSegmentation(fg_kdtree, whole_kdtree, fg_cloud, whole_cloud, target_frame);
+    fg_kdtree = buildForegroundKdTree(target_frame, fg_cloud);
     // quit the program if there is no segmentation
     if(fg_kdtree == NULL)break;
     // Find the closest object each segmented point belongs to 
