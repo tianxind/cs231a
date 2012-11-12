@@ -47,3 +47,6 @@ target_link_libraries(graphcuts_segmenter ${PROJECT_NAME})
 
 rosbuild_add_executable(evaluator src/evaluator.cpp)
 target_link_libraries(evaluator ${PROJECT_NAME}) 
+
+rosbuild_add_executable(bilateral_segmenter src/bilateral_segmenter.cpp)
+target_link_libraries(bilateral_segmenter ${PROJECT_NAME}) 

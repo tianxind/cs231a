@@ -148,6 +148,19 @@ ROSBUILD_gensrv_lisp/fast:
 .PHONY : ROSBUILD_gensrv_lisp/fast
 
 #=============================================================================
+# Target rules for targets named bilateral_segmenter
+
+# Build rule for target.
+bilateral_segmenter: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bilateral_segmenter
+.PHONY : bilateral_segmenter
+
+# fast build rule for target.
+bilateral_segmenter/fast:
+	$(MAKE) -f CMakeFiles/bilateral_segmenter.dir/build.make CMakeFiles/bilateral_segmenter.dir/build
+.PHONY : bilateral_segmenter/fast
+
+#=============================================================================
 # Target rules for targets named clean-test-results
 
 # Build rule for target.
@@ -356,6 +369,21 @@ view_data/fast:
 .PHONY : view_data/fast
 
 # target to build an object file
+src/bilateral_segmenter.o:
+	$(MAKE) -f CMakeFiles/bilateral_segmenter.dir/build.make CMakeFiles/bilateral_segmenter.dir/src/bilateral_segmenter.o
+.PHONY : src/bilateral_segmenter.o
+
+# target to preprocess a source file
+src/bilateral_segmenter.i:
+	$(MAKE) -f CMakeFiles/bilateral_segmenter.dir/build.make CMakeFiles/bilateral_segmenter.dir/src/bilateral_segmenter.i
+.PHONY : src/bilateral_segmenter.i
+
+# target to generate assembly for a file
+src/bilateral_segmenter.s:
+	$(MAKE) -f CMakeFiles/bilateral_segmenter.dir/build.make CMakeFiles/bilateral_segmenter.dir/src/bilateral_segmenter.s
+.PHONY : src/bilateral_segmenter.s
+
+# target to build an object file
 src/evaluator.o:
 	$(MAKE) -f CMakeFiles/evaluator.dir/build.make CMakeFiles/evaluator.dir/src/evaluator.o
 .PHONY : src/evaluator.o
@@ -500,6 +528,7 @@ help:
 	@echo "... ROSBUILD_genmsg_lisp"
 	@echo "... ROSBUILD_gensrv_cpp"
 	@echo "... ROSBUILD_gensrv_lisp"
+	@echo "... bilateral_segmenter"
 	@echo "... clean-test-results"
 	@echo "... edit_cache"
 	@echo "... evaluator"
@@ -518,6 +547,9 @@ help:
 	@echo "... test-results-run"
 	@echo "... tests"
 	@echo "... view_data"
+	@echo "... src/bilateral_segmenter.o"
+	@echo "... src/bilateral_segmenter.i"
+	@echo "... src/bilateral_segmenter.s"
 	@echo "... src/evaluator.o"
 	@echo "... src/evaluator.i"
 	@echo "... src/evaluator.s"

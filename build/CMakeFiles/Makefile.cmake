@@ -61,6 +61,7 @@ SET(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/ROSBUILD_genmsg_lisp.dir/DependInfo.cmake"
   "CMakeFiles/ROSBUILD_gensrv_cpp.dir/DependInfo.cmake"
   "CMakeFiles/ROSBUILD_gensrv_lisp.dir/DependInfo.cmake"
+  "CMakeFiles/bilateral_segmenter.dir/DependInfo.cmake"
   "CMakeFiles/clean-test-results.dir/DependInfo.cmake"
   "CMakeFiles/evaluator.dir/DependInfo.cmake"
   "CMakeFiles/graphcuts_segmenter.dir/DependInfo.cmake"

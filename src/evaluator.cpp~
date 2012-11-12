@@ -34,23 +34,34 @@ void insertIndexIntoSet(vector<TrackedObject>& to, set<int>& s) {
 double reportMetrics(set<int>& result, set<int>& golden) {
   vector<int> true_positives(result.size() + golden.size());
   vector<int>::iterator it;
+  double norm_accuracy;
   it = set_intersection(result.begin(), result.end(), golden.begin(), golden.end(), true_positives.begin());
   int num_tp = int(it - true_positives.begin());
-  double norm_ = 0.001;
-  double precision = (double) num_tp / (result.size()+norm_);
-  double recall = (double) num_tp / (golden.size()+norm_);
-  double f1 = (precision * recall * 2)/(precision + recall+norm_);
-  cout << "True positives: " << num_tp << ", Precision: " << precision
-       << " Recall: " << recall
-       << " F-1 score: " << f1 << endl; 
-  sum_f1 += f1;
+  int num_fp = result.size() - num_tp;
+  int num_wrong = result.size() + golden.size() - 2 * num_tp;
+  if (golden.size() == 0) {
+    norm_accuracy = 0;
+  } else {
+    double accuracy = double(num_wrong) / golden.size();
+    norm_accuracy = 1.0 - ((1.0 < accuracy) ? 1.0 : accuracy);
+  }
+  cout << "True positives: " << num_tp
+       << " False positives: " << num_fp
+       << " Foreground size: " << golden.size() 
+       << " Norm accuracy: " << norm_accuracy << endl;
+
+  return norm_accuracy;
 }
 
 double evaluateSegmentation(Scene& result_scene, Scene& golden_scene) {
   set<int> result;
   set<int> golden;
-  insertIndexIntoSet(result_scene.segmentation_->tracked_objects_, result); 
-  insertIndexIntoSet(golden_scene.segmentation_->tracked_objects_, golden); 
+  if (result_scene.segmentation_ != NULL) {
+    insertIndexIntoSet(result_scene.segmentation_->tracked_objects_, result); 
+  }
+  if (golden_scene.segmentation_ != NULL) {
+    insertIndexIntoSet(golden_scene.segmentation_->tracked_objects_, golden); 
+  }
   return reportMetrics(result, golden);
 }
 
@@ -70,12 +81,11 @@ int main(int argc, char** argv)
   }
   Sequence result_seq(result_path);
   Sequence golden_seq(golden_path);
-  double f1 = 0.0;
+  double sum_accuracy = 0.0;
   for (size_t i = 1; i < result_seq.size(); ++i) {
     cout << "Evaluating frame " << i << endl;
-    evaluateSegmentation(*result_seq.getScene(i), *golden_seq.getScene(i));
-    cout<< "Accumulative f1 score " << (double)sum_f1/result_seq.size()<<endl; 
+    sum_accuracy += evaluateSegmentation(*result_seq.getScene(i), *golden_seq.getScene(i));
   }
-  cout<< "Average f1 score " << (double)sum_f1/result_seq.size()<<endl; 
+  cout << "Average accuracy across all frames: " << sum_accuracy / (result_seq.size() - 1) << endl;
   return 0;
 }
