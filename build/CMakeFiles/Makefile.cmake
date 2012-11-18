@@ -66,6 +66,7 @@ SET(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/evaluator.dir/DependInfo.cmake"
   "CMakeFiles/graphcuts_segmenter.dir/DependInfo.cmake"
   "CMakeFiles/hand_segmenter.dir/DependInfo.cmake"
+  "CMakeFiles/nographcuts_segmenter.dir/DependInfo.cmake"
   "CMakeFiles/rosbuild_precompile.dir/DependInfo.cmake"
   "CMakeFiles/rosbuild_premsgsrvgen.dir/DependInfo.cmake"
   "CMakeFiles/rospack_genmsg.dir/DependInfo.cmake"

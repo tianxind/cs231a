@@ -7,6 +7,7 @@
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/evaluator.dir
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/graphcuts_segmenter.dir
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/hand_segmenter.dir
+/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/nographcuts_segmenter.dir
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/rosbuild_precompile.dir
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/rosbuild_premsgsrvgen.dir
 /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/rospack_genmsg.dir

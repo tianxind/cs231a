@@ -15,6 +15,7 @@
 #define EDGE_SIGMA (getenv("EDGE_SIGMA") ? atof(getenv("EDGE_SIGMA")) : 0.01)
 #define BILATERAL_SIGMA (getenv("BILATERAL_SIGMA") ? atof(getenv("BILATERAL_SIGMA")) : 0.05)
 #define DEBUG (getenv("DEBUG") ? atof(getenv("DEBUG")) : 0) 
+#define RADIUS (getenv("RADIUS") ? atof(getenv("RADIUS")) : 0.15)
 using namespace std;
 namespace bfs = boost::filesystem;
 
@@ -101,9 +102,11 @@ void addEdgesWithinRadius(Eigen::MatrixXf& cloud_smooth_,
   //     << search_point.x << ", "
   //     << search_point.y << ", "
   //     << search_point.z << ") " << endl;
-  for (size_t i = 0; i < neighbors.size(); ++i) {
+  size_t num_edges = neighbors.size() < 10 ? neighbors.size() : 10;
+  for (size_t i = 0; i < num_edges; ++i) {
     if (index != neighbors[i]) {
-      graph->add_edge(index, neighbors[i], exp(-sqrt(distances[i])), exp(-sqrt(distances[i])));
+      double edge_potential = exp(-sqrt(distances[i])/EDGE_SIGMA);
+      graph->add_edge(index, neighbors[i], edge_potential, edge_potential);
       // cout << "Edge weight is " << exp(-distances[i]);
     }
   }
@@ -235,7 +238,7 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
     // Add node potential computed from distance to previous foreground
     addDistToForegroundPotential(node, fg_kdtree, src_potentials, snk_potentials);
 
-    addBilateralPotential(node, fg_kdtree, whole_kdtree, fg_cloud, whole_cloud, 0.075, src_potentials, snk_potentials, target_frame);
+    addBilateralPotential(node, fg_kdtree, whole_kdtree, fg_cloud, whole_cloud, 0.15, src_potentials, snk_potentials, target_frame);
     // Aggregate two potentials using predefined weights, and add the potential to graph
     aggregatePotential(i, node, src_potentials, snk_potentials, graph_);
   }
@@ -248,7 +251,7 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
   //pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>);
   pcl::KdTreeFLANN<pcl::PointXYZ>* kdtree = buildKdTree(target_frame.cloud_smooth_, whole_cloud);
   for (int i = 0; i < num_nodes; ++i) {
-    addEdgesWithinRadius(cloud_smooth_, i, 0.15, kdtree, graph_);
+    addEdgesWithinRadius(cloud_smooth_, i, RADIUS, kdtree, graph_);
   }
   cout << "Running max flow..." << endl;
   graph_->maxflow();

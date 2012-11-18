@@ -213,6 +213,19 @@ hand_segmenter/fast:
 .PHONY : hand_segmenter/fast
 
 #=============================================================================
+# Target rules for targets named nographcuts_segmenter
+
+# Build rule for target.
+nographcuts_segmenter: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 nographcuts_segmenter
+.PHONY : nographcuts_segmenter
+
+# fast build rule for target.
+nographcuts_segmenter/fast:
+	$(MAKE) -f CMakeFiles/nographcuts_segmenter.dir/build.make CMakeFiles/nographcuts_segmenter.dir/build
+.PHONY : nographcuts_segmenter/fast
+
+#=============================================================================
 # Target rules for targets named rosbuild_precompile
 
 # Build rule for target.
@@ -459,6 +472,21 @@ src/node_potential.s:
 .PHONY : src/node_potential.s
 
 # target to build an object file
+src/nographcuts_segmenter.o:
+	$(MAKE) -f CMakeFiles/nographcuts_segmenter.dir/build.make CMakeFiles/nographcuts_segmenter.dir/src/nographcuts_segmenter.o
+.PHONY : src/nographcuts_segmenter.o
+
+# target to preprocess a source file
+src/nographcuts_segmenter.i:
+	$(MAKE) -f CMakeFiles/nographcuts_segmenter.dir/build.make CMakeFiles/nographcuts_segmenter.dir/src/nographcuts_segmenter.i
+.PHONY : src/nographcuts_segmenter.i
+
+# target to generate assembly for a file
+src/nographcuts_segmenter.s:
+	$(MAKE) -f CMakeFiles/nographcuts_segmenter.dir/build.make CMakeFiles/nographcuts_segmenter.dir/src/nographcuts_segmenter.s
+.PHONY : src/nographcuts_segmenter.s
+
+# target to build an object file
 src/scene.o:
 	$(MAKE) -f CMakeFiles/segmentation_and_tracking.dir/build.make CMakeFiles/segmentation_and_tracking.dir/src/scene.o
 .PHONY : src/scene.o
@@ -549,6 +577,7 @@ help:
 	@echo "... evaluator"
 	@echo "... graphcuts_segmenter"
 	@echo "... hand_segmenter"
+	@echo "... nographcuts_segmenter"
 	@echo "... rebuild_cache"
 	@echo "... rosbuild_precompile"
 	@echo "... rosbuild_premsgsrvgen"
@@ -580,6 +609,9 @@ help:
 	@echo "... src/node_potential.o"
 	@echo "... src/node_potential.i"
 	@echo "... src/node_potential.s"
+	@echo "... src/nographcuts_segmenter.o"
+	@echo "... src/nographcuts_segmenter.i"
+	@echo "... src/nographcuts_segmenter.s"
 	@echo "... src/scene.o"
 	@echo "... src/scene.i"
 	@echo "... src/scene.s"
