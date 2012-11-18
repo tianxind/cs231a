@@ -86,9 +86,9 @@ True positives: 210 False positives: 15 Foreground size: 227 Norm accuracy: 0.85
 Evaluating frame 21
 True positives: 102 False positives: 4 Foreground size: 107 Norm accuracy: 0.915888
 Evaluating frame 22
-True positives: 0 False positives: 0 Foreground size: 0 Norm accuracy: 0
+True positives: 0 False positives: 0 Foreground size: 0 Norm accuracy: 1
 Evaluating frame 23
-True positives: 0 False positives: 0 Foreground size: 0 Norm accuracy: 0
+True positives: 0 False positives: 0 Foreground size: 0 Norm accuracy: 1
 Evaluating frame 24
-True positives: 0 False positives: 0 Foreground size: 0 Norm accuracy: 0
-Average accuracy across all frames: 0.539574
+True positives: 0 False positives: 0 Foreground size: 0 Norm accuracy: 1
+Average accuracy across all frames: 0.664574

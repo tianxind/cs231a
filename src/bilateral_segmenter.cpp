@@ -11,13 +11,15 @@
 
 #define DEPG_SIGMA (getenv("DEPG_SIGMA") ? atof(getenv("DEPG_SIGMA")) : 0.0625)
 #define BILATERAL_W (getenv("BILATERAL_W") ? atof(getenv("BILATERAL_W")) : 1)
-#define BILATERAL_SIGMA (getenv("BILATERAL_SIGMA") ? atof(getenv("BILATERAL_SIGMA")) : 0.0625)
+#define DEPG_W (getenv("DEPG_W") ? atof(getenv("DEPG_W")) : 1)
+#define EDGE_SIGMA (getenv("EDGE_SIGMA") ? atof(getenv("EDGE_SIGMA")) : 0.01)
+#define BILATERAL_SIGMA (getenv("BILATERAL_SIGMA") ? atof(getenv("BILATERAL_SIGMA")) : 0.05)
+#define DEBUG (getenv("DEBUG") ? atof(getenv("DEBUG")) : 0) 
 using namespace std;
 namespace bfs = boost::filesystem;
 
 namespace {
   static const int INF = 9999999;
-  static const int DEBUG = 2;
   static const int vmin = 10, vmax = 256, smin = 30;
 }
 
@@ -49,9 +51,8 @@ pcl::KdTreeFLANN<pcl::PointXYZ>* buildForegroundKdTree(Scene& seed_frame, pcl::P
       cloud_index++;
     }
   }
-  cout<<"foreground cloud size: "<< fg_cloud->width<< " "<<cloud_index<<endl; 
-  if(fg_cloud->width == 0)
-  {
+  cout<<"foreground cloud size: " << cloud_index << endl; 
+  if (fg_cloud->width == 0) {
     return NULL;
   }
 
@@ -73,7 +74,6 @@ pcl::KdTreeFLANN<pcl::PointXYZ>* buildKdTree(Eigen::MatrixXf& cloud_smooth_, pcl
     cloud->points[i].z = cloud_smooth_(i, 2);  
   }
   kdtree->setInputCloud(cloud);
-  //whole_cloud = cloud;
   return kdtree;
 }
 
@@ -82,7 +82,7 @@ double distToPrevForeground(pcl::PointXYZ& node,
   vector<int> nearest(1);
   vector<float> distance(1);
   fg_kdtree->nearestKSearch(node, 1, nearest, distance);
-  return distance[0];
+  return sqrt(distance[0]);
 }
 
 void addEdgesWithinRadius(Eigen::MatrixXf& cloud_smooth_,
@@ -103,7 +103,7 @@ void addEdgesWithinRadius(Eigen::MatrixXf& cloud_smooth_,
   //     << search_point.z << ") " << endl;
   for (size_t i = 0; i < neighbors.size(); ++i) {
     if (index != neighbors[i]) {
-      graph->add_edge(index, neighbors[i], exp(-distances[i]), exp(-distances[i]));
+      graph->add_edge(index, neighbors[i], exp(-sqrt(distances[i])), exp(-sqrt(distances[i])));
       // cout << "Edge weight is " << exp(-distances[i]);
     }
   }
@@ -135,28 +135,35 @@ void addDistToForegroundPotential(pcl::PointXYZ& node,
 }
 
 void aggregatePotential(int node_index,
+                        pcl::PointXYZ& node,
                         vector<double>& src_potentials,
                         vector<double>& snk_potentials,
                         graphcuts::Graph3dPtr graph_) {
-  double src_pot = src_potentials[0] + BILATERAL_W * src_potentials[1];
-  double snk_pot = snk_potentials[0] + BILATERAL_W * snk_potentials[1];
+  double src_pot = DEPG_W * src_potentials[0] + BILATERAL_W * src_potentials[1];
+  double snk_pot = DEPG_W * snk_potentials[0] + BILATERAL_W * snk_potentials[1];
+  if (DEBUG == 1) {
+    cout << "Node (" << node.x << ", " << node.y << ", " << node.z << "): srcdepth-" << src_potentials[0]
+         << " srcbilateral-" << src_potentials[1] << " snkdepth-" << snk_potentials[0] << " snkbilateral-"
+         << snk_potentials[1] << "    src: " << src_pot << " snk: " << snk_pot << endl;
+  }
   graph_->add_tweights(node_index, src_pot, snk_pot);
 }
 
 bool isForeground(pcl::PointXYZ& node,
-                  int neighbor_id,
                   pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
                   pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud) {
   vector<int> nearest(1);
   vector<float> distance(1);
-  //cout<<"###### isFoureground ing ";
-  //cout<< node.x<<endl;
   fg_kdtree->nearestKSearch(node, 1, nearest, distance);
   bool isForeground = true;
   pcl::PointXYZ& nearest_node = fg_cloud->points[nearest[0]];
-  if(abs(nearest_node.x - node.x) > 1E-6) isForeground = false;
-  if(abs(nearest_node.y - node.y) > 1E-6) isForeground = false;
-  if(abs(nearest_node.z - node.z) > 1E-6) isForeground = false;
+  if (abs(nearest_node.x - node.x) > 1E-6) isForeground = false;
+  if (abs(nearest_node.y - node.y) > 1E-6) isForeground = false;
+  if (abs(nearest_node.z - node.z) > 1E-6) isForeground = false;
+  /*if (isForeground) {
+    cout << "point (" << node.x << ", " << node.y << ", " << node.z << ") found"
+      "in fg is point (" << node.x << ", " << node.y << ", " << node.z << ")" << endl;
+      }*/
   return isForeground;
 
   //return nearest[0]==neighbor_id;
@@ -174,23 +181,27 @@ void addBilateralPotential(pcl::PointXYZ& node,
   vector<int> neighbors;
   vector<float> distances;
   whole_kdtree->radiusSearch(node, radius, neighbors, distances);
-  // cout << "Found " << neighbors.size() << " neighbors for point ("
-  //     << search_point.x << ", "
-  //     << search_point.y << ", "
-  //     << search_point.z << ") " << endl;
+  /*cout << "Found " << neighbors.size() << " neighbors for point ("
+       << node.x << ", "
+       << node.y << ", "
+       << node.z << ") " << endl;*/
   double sum_terms = 0.0;
   for (size_t i = 0; i < neighbors.size(); ++i) {
     int label = 0;
-    int neighbor_id = neighbors[i];
     pcl::PointXYZ& node = whole_cloud->points[neighbors[i]];
-    if (isForeground(node, neighbor_id, fg_kdtree, fg_cloud)) {
+    if (isForeground(node, fg_kdtree, fg_cloud)) {
       label = 1;
     } else {
       label = -1;
     }
-    sum_terms = label * exp(-sqrt(distances[i]/BILATERAL_SIGMA));
+    sum_terms += label * exp(-sqrt(distances[i])/BILATERAL_SIGMA);
   }
   double energy = 2.0 / (1.0 + exp(-sum_terms)) - 1.0;
+  /*cout << "Enesrgy for point (" 
+       << node.x << ", "
+       << node.y << ", "
+       << node.z << ") is " << energy << endl;*/
+
   if (energy > 0) {
     src_potentials.push_back(energy);
     snk_potentials.push_back(0);
@@ -221,10 +232,9 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
     // Add node potential computed from distance to previous foreground
     addDistToForegroundPotential(node, fg_kdtree, src_potentials, snk_potentials);
 
-    addBilateralPotential(node, fg_kdtree, whole_kdtree, fg_cloud, whole_cloud, 0.15, src_potentials, snk_potentials);
+    addBilateralPotential(node, fg_kdtree, whole_kdtree, fg_cloud, whole_cloud, 0.075, src_potentials, snk_potentials);
     // Aggregate two potentials using predefined weights, and add the potential to graph
-    aggregatePotential(i, src_potentials, snk_potentials, graph_);
-    //cout << "Node dist: " << dist << " (source) " << src_pot << " (sink) " << snk_pot << endl;
+    aggregatePotential(i, node, src_potentials, snk_potentials, graph_);
   }
   // Add edges and edge potentials
   // First construct kdtree for current image
@@ -237,7 +247,6 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
   }
   cout << "Running max flow..." << endl;
   graph_->maxflow();
-  cout << "Finished running max flow..." << endl;
   generateSegmentationFromGraph(graph_, target_frame);
 }
 
@@ -271,6 +280,7 @@ int main(int argc, char** argv)
     cout << "Tracking image in frame " << i << endl;
     graphCutsSegmentation(fg_kdtree, whole_kdtree, fg_cloud, whole_cloud, target_frame);
     fg_kdtree = buildForegroundKdTree(target_frame, fg_cloud);
+    whole_kdtree = buildKdTree(target_frame.cloud_smooth_, whole_cloud);
     // quit the program if there is no segmentation
     if(fg_kdtree == NULL)break;
     // Find the closest object each segmented point belongs to 
