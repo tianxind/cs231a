@@ -214,6 +214,48 @@ CMakeFiles/segmentation_and_tracking.dir/src/sequence.o.provides: CMakeFiles/seg
 
 CMakeFiles/segmentation_and_tracking.dir/src/sequence.o.provides.build: CMakeFiles/segmentation_and_tracking.dir/src/sequence.o
 
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: CMakeFiles/segmentation_and_tracking.dir/flags.make
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: ../src/node_potential.cpp
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: ../manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv_bleeding/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /home/sandra/cs231a/jarvis/ros-pkg/external/opencv2_flags/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/eigen_flags/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /opt/ros/fuerte/share/roscpp_serialization/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /home/sandra/cs231a/jarvis/ros-pkg/external/pcl_bleeding/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /home/sandra/cs231a/jarvis/ros-pkg/external/maxflow/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/gzstream/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/timer/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/eigen_extensions/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/serializable/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /opt/ros/fuerte/share/rosconsole/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /home/sandra/cs231a/jarvis/ros-pkg/utility/name_mapping/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /home/sandra/cs231a/jarvis/ros-pkg/core/optimization/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /home/sandra/cs231a/jarvis/ros-pkg/core/pipeline2/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /home/sandra/cs231a/jarvis/ros-pkg/core/graphcuts/manifest.xml
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o: /home/sandra/cs231a/jarvis/ros-pkg/core/image_labeler/manifest.xml
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles $(CMAKE_PROGRESS_5)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o -c /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/node_potential.cpp
+
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/segmentation_and_tracking.dir/src/node_potential.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/node_potential.cpp > CMakeFiles/segmentation_and_tracking.dir/src/node_potential.i
+
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/segmentation_and_tracking.dir/src/node_potential.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/node_potential.cpp -o CMakeFiles/segmentation_and_tracking.dir/src/node_potential.s
+
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o.requires:
+.PHONY : CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o.requires
+
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o.provides: CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o.requires
+	$(MAKE) -f CMakeFiles/segmentation_and_tracking.dir/build.make CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o.provides.build
+.PHONY : CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o.provides
+
+CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o.provides.build: CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o
+
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: CMakeFiles/segmentation_and_tracking.dir/flags.make
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: ../src/hand_segmenter_view_controller.cpp
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: ../manifest.xml
@@ -235,7 +277,7 @@ CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/core/pipeline2/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/core/graphcuts/manifest.xml
 CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o: /home/sandra/cs231a/jarvis/ros-pkg/core/image_labeler/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -Wno-deprecated-declarations -fopenmp -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o -c /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/hand_segmenter_view_controller.cpp
 
@@ -262,6 +304,7 @@ segmentation_and_tracking_OBJECTS = \
 "CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o" \
 "CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o" \
 "CMakeFiles/segmentation_and_tracking.dir/src/sequence.o" \
+"CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o" \
 "CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o"
 
 # External object files for target segmentation_and_tracking
@@ -271,6 +314,7 @@ segmentation_and_tracking_EXTERNAL_OBJECTS =
 ../lib/libsegmentation_and_tracking.so: CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o
 ../lib/libsegmentation_and_tracking.so: CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o
 ../lib/libsegmentation_and_tracking.so: CMakeFiles/segmentation_and_tracking.dir/src/sequence.o
+../lib/libsegmentation_and_tracking.so: CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o
 ../lib/libsegmentation_and_tracking.so: CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o
 ../lib/libsegmentation_and_tracking.so: CMakeFiles/segmentation_and_tracking.dir/build.make
 ../lib/libsegmentation_and_tracking.so: CMakeFiles/segmentation_and_tracking.dir/link.txt
@@ -285,6 +329,7 @@ CMakeFiles/segmentation_and_tracking.dir/requires: CMakeFiles/segmentation_and_t
 CMakeFiles/segmentation_and_tracking.dir/requires: CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o.requires
 CMakeFiles/segmentation_and_tracking.dir/requires: CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o.requires
 CMakeFiles/segmentation_and_tracking.dir/requires: CMakeFiles/segmentation_and_tracking.dir/src/sequence.o.requires
+CMakeFiles/segmentation_and_tracking.dir/requires: CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o.requires
 CMakeFiles/segmentation_and_tracking.dir/requires: CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o.requires
 .PHONY : CMakeFiles/segmentation_and_tracking.dir/requires
 

@@ -3,6 +3,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o"
   "CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o"
   "CMakeFiles/segmentation_and_tracking.dir/src/sequence.o"
+  "CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o"
   "CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o"
   "../lib/libsegmentation_and_tracking.pdb"
   "../lib/libsegmentation_and_tracking.so"

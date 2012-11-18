@@ -11,6 +11,7 @@
 
 class TrackedObject;
 class Segmentation;
+class NodePotentialOverlay;
 class Scene;
 class Sequence;
 
@@ -44,6 +45,17 @@ private:
   void deserialize(std::istream& in);
 };
 
+class NodePotential {
+public:
+  std::vector<double> potentials_;
+  
+  NodePotential();
+  NodePotential(const std::string& path);
+  void save(const std::string& path) const;
+  void serialize(std::ostream& out) const;
+  void deserialize(std::istream& in);
+};
+
 class Scene
 {
 public:
@@ -60,15 +72,22 @@ public:
   //! npts x 2.  The points in a velodyne-centered depth image.  There should be no parallax here.
   //Eigen::MatrixXf velo_depth_image_points_;
   Segmentation* segmentation_;
-
+  // Bilateral node potential. positive number stands for foreground potential, negative
+  // for background potential. 0 for neither foreground nor background.
+  NodePotential bilateral_potential_;
   //! path + ".png" and path + ".txt" should be the image and point cloud data for this Scene.
   //! segmentation_ will be filled if path + "_segmentation.txt" exists; otherwise it will be NULL.
   Scene(const std::string& path);
   ~Scene();
   cv::Mat getDepthOverlay() const;
+  // Overlay color on scene according to bilateral node potential: red - foreground, green -
+  // background, black - neither.
+  cv::Mat getBilateralOverlay() const;
   //! Returns an image that shows segmented object id.  If id == -1, then all objects are shown.
   cv::Mat getSegmentationOverlay(int id = -1) const;
   void saveSegmentation() const;
+  void saveBilateralPotential() const;
+  void clearBilateralPotential();
   void addTrackedObject(const TrackedObject& to);
   //! Adds a new (empty) tracked object if id doesn't exist.
   TrackedObject& getTrackedObject(int id);

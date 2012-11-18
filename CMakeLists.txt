@@ -28,7 +28,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 #common commands for building c++ executables and libraries
 rosbuild_add_library(${PROJECT_NAME} src/scene.cpp src/segmentation.cpp
-  src/tracked_object.cpp src/sequence.cpp 
+  src/tracked_object.cpp src/sequence.cpp src/node_potential.cpp
   src/hand_segmenter_view_controller.cpp)
 #target_link_libraries(${PROJECT_NAME} pcl_bleeding)
 #rosbuild_add_boost_directories()

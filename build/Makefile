@@ -444,6 +444,21 @@ src/hand_segmenter_view_controller.s:
 .PHONY : src/hand_segmenter_view_controller.s
 
 # target to build an object file
+src/node_potential.o:
+	$(MAKE) -f CMakeFiles/segmentation_and_tracking.dir/build.make CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o
+.PHONY : src/node_potential.o
+
+# target to preprocess a source file
+src/node_potential.i:
+	$(MAKE) -f CMakeFiles/segmentation_and_tracking.dir/build.make CMakeFiles/segmentation_and_tracking.dir/src/node_potential.i
+.PHONY : src/node_potential.i
+
+# target to generate assembly for a file
+src/node_potential.s:
+	$(MAKE) -f CMakeFiles/segmentation_and_tracking.dir/build.make CMakeFiles/segmentation_and_tracking.dir/src/node_potential.s
+.PHONY : src/node_potential.s
+
+# target to build an object file
 src/scene.o:
 	$(MAKE) -f CMakeFiles/segmentation_and_tracking.dir/build.make CMakeFiles/segmentation_and_tracking.dir/src/scene.o
 .PHONY : src/scene.o
@@ -562,6 +577,9 @@ help:
 	@echo "... src/hand_segmenter_view_controller.o"
 	@echo "... src/hand_segmenter_view_controller.i"
 	@echo "... src/hand_segmenter_view_controller.s"
+	@echo "... src/node_potential.o"
+	@echo "... src/node_potential.i"
+	@echo "... src/node_potential.s"
 	@echo "... src/scene.o"
 	@echo "... src/scene.i"
 	@echo "... src/scene.s"

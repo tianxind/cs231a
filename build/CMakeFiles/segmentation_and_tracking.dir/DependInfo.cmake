@@ -5,6 +5,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/hand_segmenter_view_controller.cpp" "/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.o"
+  "/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/node_potential.cpp" "/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/segmentation_and_tracking.dir/src/node_potential.o"
   "/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/scene.cpp" "/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/segmentation_and_tracking.dir/src/scene.o"
   "/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/segmentation.cpp" "/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/segmentation_and_tracking.dir/src/segmentation.o"
   "/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/sequence.cpp" "/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles/segmentation_and_tracking.dir/src/sequence.o"

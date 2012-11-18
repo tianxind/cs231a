@@ -78,6 +78,8 @@ void HandSegmenterViewController::run()
       view_->updateImage(scene_->img_);
     else if(state_ == DEPTH_OVERLAY)
       view_->updateImage(scene_->getDepthOverlay());
+    else if(state_ == BILATERAL_OVERLAY)
+      view_->updateImage(scene_->getBilateralOverlay());
     else if(state_ == SEGMENTING)
       view_->updateImage(scene_->getSegmentationOverlay(active_tracked_object_));
         
@@ -89,6 +91,9 @@ void HandSegmenterViewController::run()
 void HandSegmenterViewController::handleKeyPress(char key)
 {
   switch(key)  {
+  case 'b':
+    transitionTo(BILATERAL_OVERLAY);
+    break;
   case 'q':
     exit(0);
     break;
@@ -376,8 +381,10 @@ void HandSegmenterViewController::transitionTo(state_t state)
 
   if(state_ == DEFAULT)
     view_->message_ = "Raw image";
-  else if(state_ == DEPTH_OVERLAY)
+  else if (state_ == DEPTH_OVERLAY)
     view_->message_ = "Depth overlay";
+  else if (state_ == BILATERAL_OVERLAY)
+    view_->message_ = "Bilateral overlay"; 
   else if(state_ == SEGMENTING) {
     if(active_tracked_object_ == -1)
       view_->message_ = "Showing all segmentations";

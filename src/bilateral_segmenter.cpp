@@ -176,7 +176,8 @@ void addBilateralPotential(pcl::PointXYZ& node,
                            pcl::PointCloud<pcl::PointXYZ>::Ptr whole_cloud,
                            double radius,
                            vector<double>& src_potentials,
-                           vector<double>& snk_potentials) {
+                           vector<double>& snk_potentials,
+                           Scene& target_frame) {
   // TODO: implement this
   vector<int> neighbors;
   vector<float> distances;
@@ -197,11 +198,12 @@ void addBilateralPotential(pcl::PointXYZ& node,
     sum_terms += label * exp(-sqrt(distances[i])/BILATERAL_SIGMA);
   }
   double energy = 2.0 / (1.0 + exp(-sum_terms)) - 1.0;
-  /*cout << "Enesrgy for point (" 
+  /*cout << "Energy for point (" 
        << node.x << ", "
        << node.y << ", "
        << node.z << ") is " << energy << endl;*/
-
+  // Save bilateral node potential to vector
+  target_frame.bilateral_potential_.potentials_.push_back(energy);
   if (energy > 0) {
     src_potentials.push_back(energy);
     snk_potentials.push_back(0);
@@ -223,6 +225,7 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
   // Add nodes and node potentials
   cout << "Adding nodes to graph..." << endl;
   graph_->add_node(num_nodes);
+  target_frame.clearBilateralPotential();
   for (int i = 0; i < num_nodes; ++i) {
     pcl::PointXYZ node;
     node.x = cloud_smooth_(i, 0);
@@ -232,10 +235,12 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
     // Add node potential computed from distance to previous foreground
     addDistToForegroundPotential(node, fg_kdtree, src_potentials, snk_potentials);
 
-    addBilateralPotential(node, fg_kdtree, whole_kdtree, fg_cloud, whole_cloud, 0.075, src_potentials, snk_potentials);
+    addBilateralPotential(node, fg_kdtree, whole_kdtree, fg_cloud, whole_cloud, 0.075, src_potentials, snk_potentials, target_frame);
     // Aggregate two potentials using predefined weights, and add the potential to graph
     aggregatePotential(i, node, src_potentials, snk_potentials, graph_);
   }
+  // Save node potential for this scene to file
+  target_frame.saveBilateralPotential();
   // Add edges and edge potentials
   // First construct kdtree for current image
   cout << "Build kdtree for current image..." << endl;

@@ -8,6 +8,7 @@ enum state_t
 {
   DEFAULT,
   DEPTH_OVERLAY,
+  BILATERAL_OVERLAY,
   SEGMENTING
 };
 
