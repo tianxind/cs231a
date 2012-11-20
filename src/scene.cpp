@@ -18,13 +18,16 @@ Scene::Scene(const std::string& path) :
   else
     assert(!segmentation_);
   // Load bilateral potential
-  string node_potential_path = path_ + "_bilateral.dat";
-  if (bfs::exists(node_potential_path)) {
-    ifstream file(node_potential_path.c_str());
+  string bilateral_path = path_ + "_bilateral.dat";
+  if (bfs::exists(bilateral_path)) {
+    ifstream file(bilateral_path.c_str());
     bilateral_potential_.deserialize(file);
-    // cout << "num depth points: " << bilateral_potential_.potentials_.size() << endl;
-    /*if (cam_points_.rows() != bilateral_potential_.potentials_.size())
-      cout << "Size don't match!!!!" << endl;*/
+  }
+  // Load bilateral potential
+  string distToFg_path = path_ + "_dist.dat";
+  if (bfs::exists(distToFg_path)) {
+    ifstream file(distToFg_path.c_str());
+    distToFg_potential_.deserialize(file);
   }
 }
 
@@ -38,11 +41,22 @@ void Scene::clearBilateralPotential() {
   bilateral_potential_.potentials_.clear();
 }
 
+void Scene::clearDistToFgPotential() {
+  distToFg_potential_.potentials_.clear();
+}
+
 void Scene::saveBilateralPotential() const
 {
   string node_potential_path = path_ + "_bilateral.dat";
   cout << "Save bilateral potentials in " << node_potential_path << endl;
   bilateral_potential_.save(node_potential_path);
+}
+
+void Scene::saveDistToFgPotential() const
+{
+  string distToFg_path = path_ + "_dist.dat";
+  cout << "Save distToFg potentials in " << distToFg_path << endl;
+  distToFg_potential_.save(distToFg_path);
 }
 
 void Scene::saveSegmentation() const
@@ -205,20 +219,37 @@ cv::Scalar getBilateralColor(double potential) {
 
 cv::Mat Scene::getBilateralOverlay() const
 {
-  // cout << "Inside getBilateralOverlay..." << endl;
   int radius = 1;
   cv::Mat overlay = img_.clone();
   if (bilateral_potential_.potentials_.size() == 0) 
     return overlay;
   for(int i = 0; i < cam_points_.rows(); ++i) {
-    // cout << "Get color for point " << i << endl;
-    // cout << "bilateral_potential size: " << bilateral_potential_.potentials_.size() << endl;
     cv::Scalar color = getBilateralColor(bilateral_potential_.potentials_[i]);
-    // cout << "got color" << endl;
     cv::circle(overlay, cv::Point(cam_points_(i, 0), cam_points_(i, 1)), radius, color);
-    // cout << "got circle" << endl;
   }
-  // cout << "Returning bilateral overlay..." << endl;
+  return overlay;
+}
+
+cv::Scalar getDistToFgColor(double potential) {
+  if (potential > 0.9) {
+    return cv::Scalar(0, 0, 255);
+  } else if (potential < 0.1) {
+    return cv::Scalar(0, 255, 0);
+  } else {
+    return cv::Scalar(0, 0, 0);
+  }
+}
+
+cv::Mat Scene::getDistToFgOverlay() const
+{
+  int radius = 1;
+  cv::Mat overlay = img_.clone();
+  if (distToFg_potential_.potentials_.size() == 0) 
+    return overlay;
+  for(int i = 0; i < cam_points_.rows(); ++i) {
+    cv::Scalar color = getDistToFgColor(distToFg_potential_.potentials_[i]);
+    cv::circle(overlay, cv::Point(cam_points_(i, 0), cam_points_(i, 1)), radius, color);
+  }
   return overlay;
 }
 

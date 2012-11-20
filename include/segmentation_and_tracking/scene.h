@@ -75,6 +75,8 @@ public:
   // Bilateral node potential. positive number stands for foreground potential, negative
   // for background potential. 0 for neither foreground nor background.
   NodePotential bilateral_potential_;
+  // Distance to foreground node potential.
+  NodePotential distToFg_potential_;
   //! path + ".png" and path + ".txt" should be the image and point cloud data for this Scene.
   //! segmentation_ will be filled if path + "_segmentation.txt" exists; otherwise it will be NULL.
   Scene(const std::string& path);
@@ -83,11 +85,17 @@ public:
   // Overlay color on scene according to bilateral node potential: red - foreground, green -
   // background, black - neither.
   cv::Mat getBilateralOverlay() const;
+  // [0, 0.1) - green
+  // (0.1, 0.9] - black
+  // (0.9, 1) - red
+  cv::Mat getDistToFgOverlay() const;
   //! Returns an image that shows segmented object id.  If id == -1, then all objects are shown.
   cv::Mat getSegmentationOverlay(int id = -1) const;
   void saveSegmentation() const;
   void saveBilateralPotential() const;
+  void saveDistToFgPotential() const;
   void clearBilateralPotential();
+  void clearDistToFgPotential();
   void addTrackedObject(const TrackedObject& to);
   //! Adds a new (empty) tracked object if id doesn't exist.
   TrackedObject& getTrackedObject(int id);
