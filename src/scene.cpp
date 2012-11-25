@@ -217,15 +217,41 @@ cv::Scalar getBilateralColor(double potential) {
   }
 }
 
-cv::Mat Scene::getBilateralOverlay() const
+cv::Mat Scene::getBilateralOverlay(int id) const
 {
   int radius = 1;
   cv::Mat overlay = img_.clone();
-  if (bilateral_potential_.potentials_.size() == 0) 
+  if (bilateral_potential_.potentials_.size() == 0)
     return overlay;
-  for(int i = 0; i < cam_points_.rows(); ++i) {
-    cv::Scalar color = getBilateralColor(bilateral_potential_.potentials_[i]);
-    cv::circle(overlay, cv::Point(cam_points_(i, 0), cam_points_(i, 1)), radius, color);
+  int num_points = cam_points_.rows();
+  int num_to = segmentation_->tracked_objects_.size();
+  // If we are showing overlay for a single object, then read the node potential
+  // data for that object
+  if (id != -1) {
+    int offset = num_points * (id - 1);
+    for(int j = offset; j < offset + num_points; ++j) {
+      cv::Scalar color = getBilateralColor(bilateral_potential_.potentials_[j]);
+      cv::circle(overlay,
+                 cv::Point(cam_points_(j % num_points, 0), cam_points_(j % num_points, 1)),
+                 radius, color);
+    }
+  } else {
+    // Otherwise, we take the union of all red points and black points for every tracked
+    // object.
+    // Initialize all points to green (bg color)
+    vector<cv::Scalar> overlay_color(num_points, cv::Scalar(0, 255, 0));
+    for (int i = 0; i < bilateral_potential_.potentials_.size(); ++i) {
+      cv::Scalar color = getBilateralColor(bilateral_potential_.potentials_[i]);
+      // Replace the color to red if it is red in some object's overlay
+      if (color == cv::Scalar(0, 0, 255))
+        overlay_color[i % num_points] = color;
+      // Replace the color to black if it is green (not if it is already red)
+      else if (color == cv::Scalar(0, 0, 0) &&
+               overlay_color[i % num_points] == cv::Scalar(0, 255, 0))
+        overlay_color[i % num_points] = color;
+    }
+    for (int j = 0; j < num_points; ++j) 
+      cv::circle(overlay, cv::Point(cam_points_(j, 0), cam_points_(j, 1)), radius, overlay_color[j]);
   }
   return overlay;
 }
@@ -240,15 +266,41 @@ cv::Scalar getDistToFgColor(double potential) {
   }
 }
 
-cv::Mat Scene::getDistToFgOverlay() const
+cv::Mat Scene::getDistToFgOverlay(int id) const
 {
   int radius = 1;
   cv::Mat overlay = img_.clone();
   if (distToFg_potential_.potentials_.size() == 0) 
     return overlay;
-  for(int i = 0; i < cam_points_.rows(); ++i) {
-    cv::Scalar color = getDistToFgColor(distToFg_potential_.potentials_[i]);
-    cv::circle(overlay, cv::Point(cam_points_(i, 0), cam_points_(i, 1)), radius, color);
+  int num_points = cam_points_.rows();
+  int num_to = segmentation_->tracked_objects_.size();
+  // If we are showing overlay for a single object, then read the node potential
+  // data for that object
+  if (id != -1) {
+    int offset = num_points * (id - 1);
+    for(int j = offset; j < offset + num_points; ++j) {
+      cv::Scalar color = getDistToFgColor(distToFg_potential_.potentials_[j]);
+      cv::circle(overlay,
+                 cv::Point(cam_points_(j % num_points, 0), cam_points_(j % num_points, 1)),
+                 radius, color);
+    }
+  } else {
+    // Otherwise, we take the union of all red points and black points for every tracked
+    // object.
+    // Initialize all points to green (bg color)
+    vector<cv::Scalar> overlay_color(num_points, cv::Scalar(0, 255, 0));
+    for (int i = 0; i < distToFg_potential_.potentials_.size(); ++i) {
+      cv::Scalar color = getDistToFgColor(distToFg_potential_.potentials_[i]);
+      // Replace the color to red if it is red in some object's overlay
+      if (color == cv::Scalar(0, 0, 255))
+        overlay_color[i % num_points] = color;
+      // Replace the color to black if it is green (not if it is already red)
+      else if (color == cv::Scalar(0, 0, 0) &&
+               overlay_color[i % num_points] == cv::Scalar(0, 255, 0))
+        overlay_color[i % num_points] = color;
+    }
+    for (int j = 0; j < num_points; ++j) 
+      cv::circle(overlay, cv::Point(cam_points_(j, 0), cam_points_(j, 1)), radius, overlay_color[j]);
   }
   return overlay;
 }

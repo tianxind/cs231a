@@ -79,9 +79,9 @@ void HandSegmenterViewController::run()
     else if(state_ == DEPTH_OVERLAY)
       view_->updateImage(scene_->getDepthOverlay());
     else if(state_ == BILATERAL_OVERLAY)
-      view_->updateImage(scene_->getBilateralOverlay());
+      view_->updateImage(scene_->getBilateralOverlay(active_tracked_object_));
     else if(state_ == DISTTOFG_OVERLAY)
-      view_->updateImage(scene_->getDistToFgOverlay());
+      view_->updateImage(scene_->getDistToFgOverlay(active_tracked_object_));
     else if(state_ == SEGMENTING)
       view_->updateImage(scene_->getSegmentationOverlay(active_tracked_object_));
         
@@ -389,9 +389,9 @@ void HandSegmenterViewController::transitionTo(state_t state)
   else if (state_ == DEPTH_OVERLAY)
     view_->message_ = "Depth overlay";
   else if (state_ == BILATERAL_OVERLAY)
-    view_->message_ = "Bilateral overlay"; 
+    view_->message_ = "Bilateral overlay "; //+ active_tracked_object_; 
   else if (state_ == DISTTOFG_OVERLAY)
-    view_->message_ = "Dist To Previous Fg overlay"; 
+    view_->message_ = "Dist To Previous Fg overlay "; //+ active_tracked_object_; 
   else if(state_ == SEGMENTING) {
     if(active_tracked_object_ == -1)
       view_->message_ = "Showing all segmentations";
@@ -402,7 +402,8 @@ void HandSegmenterViewController::transitionTo(state_t state)
     }
   }
 
-  if(state_ != SEGMENTING)
+  if (state_ != SEGMENTING && state_ != DISTTOFG_OVERLAY
+      && state_ != BILATERAL_OVERLAY)
     active_tracked_object_ = -1;
 }
 

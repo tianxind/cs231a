@@ -84,11 +84,11 @@ public:
   cv::Mat getDepthOverlay() const;
   // Overlay color on scene according to bilateral node potential: red - foreground, green -
   // background, black - neither.
-  cv::Mat getBilateralOverlay() const;
+  cv::Mat getBilateralOverlay(int id) const;
   // [0, 0.1) - green
   // (0.1, 0.9] - black
   // (0.9, 1) - red
-  cv::Mat getDistToFgOverlay() const;
+  cv::Mat getDistToFgOverlay(int id) const;
   //! Returns an image that shows segmented object id.  If id == -1, then all objects are shown.
   cv::Mat getSegmentationOverlay(int id = -1) const;
   void saveSegmentation() const;
