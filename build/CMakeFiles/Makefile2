@@ -577,6 +577,42 @@ clean: CMakeFiles/segmentation_and_tracking.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/ssvm_learning.dir
+
+# All Build rule for target.
+CMakeFiles/ssvm_learning.dir/all: CMakeFiles/rosbuild_precompile.dir/all
+CMakeFiles/ssvm_learning.dir/all: CMakeFiles/segmentation_and_tracking.dir/all
+	$(MAKE) -f CMakeFiles/ssvm_learning.dir/build.make CMakeFiles/ssvm_learning.dir/depend
+	$(MAKE) -f CMakeFiles/ssvm_learning.dir/build.make CMakeFiles/ssvm_learning.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  12
+	@echo "Built target ssvm_learning"
+.PHONY : CMakeFiles/ssvm_learning.dir/all
+
+# Include target in all.
+all: CMakeFiles/ssvm_learning.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/ssvm_learning.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles 7
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ssvm_learning.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles 0
+.PHONY : CMakeFiles/ssvm_learning.dir/rule
+
+# Convenience name for target.
+ssvm_learning: CMakeFiles/ssvm_learning.dir/rule
+.PHONY : ssvm_learning
+
+# clean rule for target.
+CMakeFiles/ssvm_learning.dir/clean:
+	$(MAKE) -f CMakeFiles/ssvm_learning.dir/build.make CMakeFiles/ssvm_learning.dir/clean
+.PHONY : CMakeFiles/ssvm_learning.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/ssvm_learning.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/test.dir
 
 # All Build rule for target.
@@ -739,7 +775,7 @@ CMakeFiles/view_data.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/view_data.dir/all: CMakeFiles/segmentation_and_tracking.dir/all
 	$(MAKE) -f CMakeFiles/view_data.dir/build.make CMakeFiles/view_data.dir/depend
 	$(MAKE) -f CMakeFiles/view_data.dir/build.make CMakeFiles/view_data.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  12
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build/CMakeFiles  13
 	@echo "Built target view_data"
 .PHONY : CMakeFiles/view_data.dir/all
 

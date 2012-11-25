@@ -304,6 +304,19 @@ segmentation_and_tracking/fast:
 .PHONY : segmentation_and_tracking/fast
 
 #=============================================================================
+# Target rules for targets named ssvm_learning
+
+# Build rule for target.
+ssvm_learning: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ssvm_learning
+.PHONY : ssvm_learning
+
+# fast build rule for target.
+ssvm_learning/fast:
+	$(MAKE) -f CMakeFiles/ssvm_learning.dir/build.make CMakeFiles/ssvm_learning.dir/build
+.PHONY : ssvm_learning/fast
+
+#=============================================================================
 # Target rules for targets named test
 
 # Build rule for target.
@@ -532,6 +545,21 @@ src/sequence.s:
 .PHONY : src/sequence.s
 
 # target to build an object file
+src/ssvm_learning.o:
+	$(MAKE) -f CMakeFiles/ssvm_learning.dir/build.make CMakeFiles/ssvm_learning.dir/src/ssvm_learning.o
+.PHONY : src/ssvm_learning.o
+
+# target to preprocess a source file
+src/ssvm_learning.i:
+	$(MAKE) -f CMakeFiles/ssvm_learning.dir/build.make CMakeFiles/ssvm_learning.dir/src/ssvm_learning.i
+.PHONY : src/ssvm_learning.i
+
+# target to generate assembly for a file
+src/ssvm_learning.s:
+	$(MAKE) -f CMakeFiles/ssvm_learning.dir/build.make CMakeFiles/ssvm_learning.dir/src/ssvm_learning.s
+.PHONY : src/ssvm_learning.s
+
+# target to build an object file
 src/tracked_object.o:
 	$(MAKE) -f CMakeFiles/segmentation_and_tracking.dir/build.make CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o
 .PHONY : src/tracked_object.o
@@ -585,6 +613,7 @@ help:
 	@echo "... rospack_genmsg_libexe"
 	@echo "... rospack_gensrv"
 	@echo "... segmentation_and_tracking"
+	@echo "... ssvm_learning"
 	@echo "... test"
 	@echo "... test-future"
 	@echo "... test-results"
@@ -621,6 +650,9 @@ help:
 	@echo "... src/sequence.o"
 	@echo "... src/sequence.i"
 	@echo "... src/sequence.s"
+	@echo "... src/ssvm_learning.o"
+	@echo "... src/ssvm_learning.i"
+	@echo "... src/ssvm_learning.s"
 	@echo "... src/tracked_object.o"
 	@echo "... src/tracked_object.i"
 	@echo "... src/tracked_object.s"

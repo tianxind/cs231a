@@ -3,8 +3,8 @@
 # Best sigma for edge potential: >=1
 for sequence in 4 #2 3 4 5 6
 do
-    for sigma in 0.25 #0.5 1
-    do
+#    for sigma in 0.25 #0.5 1
+#    do
         for radius in 0.15 #0.075 0.15 0.3 0.6 1 2
         do 
             sequence_name="sequence0$sequence"
@@ -17,9 +17,10 @@ do
             # Run segmentation
             export DEPG_SIGMA=0.25
             export BILATERAL_SIGMA=0.1
-            export DEPG_W=1
-            export COLOR_W=0
-            export BILATERAL_W=1
+            export DIST_W=0.8146454664391956
+            export DEPG_W=0.391382042820134
+            export COLOR_W=7.323017954848669e-05
+            export BILATERAL_W=0.4888858185743249
             export EDGE_SIGMA=1
             export RADIUS=$radius
             logfile="logb0$sequence$sigma"
@@ -29,7 +30,7 @@ do
             ./evaluator ~/cs231a/$sequence_name ~/cs231a/$golden_name > $filename
             tail -n 1 $filename
         done
-    done
+#    done
 done
 #for sequence in 4
 #do

@@ -53,3 +53,6 @@ target_link_libraries(bilateral_segmenter ${PROJECT_NAME})
 
 rosbuild_add_executable(nographcuts_segmenter src/nographcuts_segmenter.cpp)
 target_link_libraries(nographcuts_segmenter ${PROJECT_NAME}) 
+
+rosbuild_add_executable(ssvm_learning src/ssvm_learning.cpp)
+target_link_libraries(ssvm_learning ${PROJECT_NAME}) 
