@@ -1,0 +1,116 @@
+2 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+2 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+1 tracked objects
+Evaluating frame 1
+True positives: 188 False positives: 28 Foreground size: 369 Norm accuracy: 0.433604
+Evaluating frame 2
+True positives: 198 False positives: 16 Foreground size: 380 Norm accuracy: 0.478947
+Evaluating frame 3
+True positives: 160 False positives: 18 Foreground size: 416 Norm accuracy: 0.341346
+Evaluating frame 4
+True positives: 212 False positives: 20 Foreground size: 472 Norm accuracy: 0.40678
+Evaluating frame 5
+True positives: 196 False positives: 29 Foreground size: 445 Norm accuracy: 0.375281
+Evaluating frame 6
+True positives: 195 False positives: 29 Foreground size: 494 Norm accuracy: 0.336032
+Evaluating frame 7
+True positives: 182 False positives: 28 Foreground size: 475 Norm accuracy: 0.324211
+Evaluating frame 8
+True positives: 211 False positives: 19 Foreground size: 532 Norm accuracy: 0.360902
+Evaluating frame 9
+True positives: 233 False positives: 29 Foreground size: 573 Norm accuracy: 0.356021
+Evaluating frame 10
+True positives: 193 False positives: 57 Foreground size: 573 Norm accuracy: 0.237347
+Evaluating frame 11
+True positives: 210 False positives: 51 Foreground size: 583 Norm accuracy: 0.272727
+Evaluating frame 12
+True positives: 231 False positives: 15 Foreground size: 669 Norm accuracy: 0.32287
+Evaluating frame 13
+True positives: 200 False positives: 31 Foreground size: 860 Norm accuracy: 0.196512
+Evaluating frame 14
+True positives: 213 False positives: 24 Foreground size: 796 Norm accuracy: 0.237437
+Evaluating frame 15
+True positives: 235 False positives: 7 Foreground size: 944 Norm accuracy: 0.241525
+Evaluating frame 16
+True positives: 168 False positives: 37 Foreground size: 873 Norm accuracy: 0.150057
+Evaluating frame 17
+True positives: 194 False positives: 4 Foreground size: 919 Norm accuracy: 0.206746
+Evaluating frame 18
+True positives: 157 False positives: 38 Foreground size: 903 Norm accuracy: 0.131783
+Evaluating frame 19
+True positives: 131 False positives: 38 Foreground size: 998 Norm accuracy: 0.0931864
+Evaluating frame 20
+True positives: 122 False positives: 24 Foreground size: 1230 Norm accuracy: 0.0796748
+Evaluating frame 21
+True positives: 37 False positives: 0 Foreground size: 1255 Norm accuracy: 0.0294821
+Evaluating frame 22
+True positives: 30 False positives: 1 Foreground size: 1223 Norm accuracy: 0.0237122
+Evaluating frame 23
+True positives: 15 False positives: 0 Foreground size: 1312 Norm accuracy: 0.0114329
+Evaluating frame 24
+True positives: 12 False positives: 0 Foreground size: 1398 Norm accuracy: 0.00858369
+Evaluating frame 25
+True positives: 3 False positives: 0 Foreground size: 1260 Norm accuracy: 0.00238095
+Evaluating frame 26
+True positives: 0 False positives: 0 Foreground size: 1113 Norm accuracy: 0
+Evaluating frame 27
+True positives: 0 False positives: 0 Foreground size: 997 Norm accuracy: 0
+Evaluating frame 28
+True positives: 0 False positives: 0 Foreground size: 655 Norm accuracy: 0
+Evaluating frame 29
+True positives: 0 False positives: 0 Foreground size: 299 Norm accuracy: 0
+Average accuracy across all frames: 0.195124
