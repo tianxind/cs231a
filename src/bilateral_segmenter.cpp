@@ -19,8 +19,11 @@
 #define BILATERAL_SIGMA (getenv("BILATERAL_SIGMA") ? atof(getenv("BILATERAL_SIGMA")) : 0.05)
 #define DEBUG (getenv("DEBUG") ? atof(getenv("DEBUG")) : 0) 
 #define RADIUS (getenv("RADIUS") ? atof(getenv("RADIUS")) : 0.15)
+
 using namespace std;
 namespace bfs = boost::filesystem;
+
+// typedef scoped_ptr<pcl::KdTreeFLANN<pcl::PointXYZ> > KdTreePtr;
 
 namespace {
   static const int INF = 9999999;
@@ -35,7 +38,7 @@ string usageString()
 }
 
 // Builds foreground kdtree for one tracked object
-pcl::KdTreeFLANN<pcl::PointXYZ>* 
+pcl::KdTreeFLANN<pcl::PointXYZ>*
 buildForegroundKdTree(Scene& seed_frame,
                       TrackedObject& to, 
                       pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud) {
@@ -52,7 +55,6 @@ buildForegroundKdTree(Scene& seed_frame,
   if (fg_cloud->width == 0) {
     return NULL;
   }
-
   fg_tree->setInputCloud(fg_cloud);
   return fg_tree;
 }
@@ -137,17 +139,20 @@ void generateSegmentationFromGraph(graphcuts::Graph3dPtr graph,
       foreground_num++;
     }
   }
+  cout << "Points in foreground: " << foreground_num << endl; 
   target_frame.addTrackedObject(to);
 }
 
 void saveSequence(Sequence& seq) {
   for (size_t j = 1; j < seq.size(); ++j) {
     Scene& target_frame = *seq.getScene(j);
-    cout << "About to save segmentation " << j << " ..." << endl;
-    target_frame.saveSegmentation();
-    // Save node potential for this scene to file
-    target_frame.saveBilateralPotential();
-    target_frame.saveDistToFgPotential();
+    if (target_frame.segmentation_) {
+      cout << "About to save segmentation " << j << " ..." << endl;
+      target_frame.saveSegmentation();
+      // Save node potential for this scene to file
+      target_frame.saveBilateralPotential();
+      target_frame.saveDistToFgPotential();
+    }
   }
 }
 
@@ -277,7 +282,9 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
   }
   cout << "Running max flow..." << endl;
   graph_->maxflow();
+  cout << "Finished running max flow ..." << endl;
   generateSegmentationFromGraph(graph_, index, target_frame);
+  delete kdtree;
 }
 
 int main(int argc, char** argv)
@@ -300,10 +307,9 @@ int main(int argc, char** argv)
   for (size_t i = 0; i < num_to; ++i) {
     cout << "Construct seed frame kdtree for object " << i <<" ..." << endl;
     pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud (new pcl::PointCloud<pcl::PointXYZ>);
-    pcl::PointCloud<pcl::PointXYZ>::Ptr whole_cloud (new pcl::PointCloud<pcl::PointXYZ>);
-    
+    pcl::PointCloud<pcl::PointXYZ>::Ptr whole_cloud (new pcl::PointCloud<pcl::PointXYZ>);    
     pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree = 
-      buildForegroundKdTree(seed_frame, seed_frame.segmentation_->tracked_objects_[i], fg_cloud);
+      buildForegroundKdTree(seed_frame, seed_frame.getTrackedObject(i + 1), fg_cloud);
     pcl::KdTreeFLANN<pcl::PointXYZ>* whole_kdtree =
       buildKdTree(seed_frame.cloud_smooth_, whole_cloud);
     // Track object i in every frame in this sequence
@@ -311,14 +317,21 @@ int main(int argc, char** argv)
       Scene& target_frame = *seq.getScene(j);
       cout << "Tracking object " << i << " in frame " << j << endl;
       graphCutsSegmentation(fg_kdtree, whole_kdtree, fg_cloud, whole_cloud, i + 1, target_frame);
+      pcl::KdTreeFLANN<pcl::PointXYZ>* old_fg_kdtree = fg_kdtree;  
       fg_kdtree = buildForegroundKdTree(target_frame,
-                                        target_frame.segmentation_->tracked_objects_[i],
+                                        target_frame.getTrackedObject(i + 1),
                                         fg_cloud);
+      delete old_fg_kdtree;
+      pcl::KdTreeFLANN<pcl::PointXYZ>* old_whole_kdtree = whole_kdtree;  
       whole_kdtree = buildKdTree(target_frame.cloud_smooth_, whole_cloud);
+      delete old_whole_kdtree;
       // quit the program if there is no segmentation
       if (fg_kdtree == NULL) break;
       // Find the closest object each segmented point belongs to 
     }
+    // Free memory
+    if (fg_kdtree) delete fg_kdtree;
+    delete whole_kdtree;
   }
   // Save segmentation of the whole sequence
   saveSequence(seq);

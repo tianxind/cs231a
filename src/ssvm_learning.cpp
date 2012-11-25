@@ -155,11 +155,13 @@ void generateSegmentationFromGraph(graphcuts::Graph3dPtr graph,
 void saveSequence(Sequence& seq) {
   for (size_t j = 1; j < seq.size(); ++j) {
     Scene& target_frame = *seq.getScene(j);
-    cout << "About to save segmentation " << j << " ..." << endl;
-    target_frame.saveSegmentation();
-    // Save node potential for this scene to file
-    target_frame.saveBilateralPotential();
-    target_frame.saveDistToFgPotential();
+    if (target_frame.segmentation_) {
+      cout << "About to save segmentation " << j << " ..." << endl;
+      target_frame.saveSegmentation();
+      // Save node potential for this scene to file
+      target_frame.saveBilateralPotential();
+      target_frame.saveDistToFgPotential();
+    }
   }
 }
 
@@ -358,7 +360,7 @@ int main(int argc, char** argv)
     pcl::PointCloud<pcl::PointXYZ>::Ptr whole_cloud (new pcl::PointCloud<pcl::PointXYZ>);
     
     pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree = 
-      buildForegroundKdTree(seed_frame, seed_frame.segmentation_->tracked_objects_[i], fg_cloud);
+      buildForegroundKdTree(seed_frame, seed_frame.getTrackedObject(i + 1), fg_cloud);
     pcl::KdTreeFLANN<pcl::PointXYZ>* whole_kdtree =
       buildKdTree(seed_frame.cloud_smooth_, whole_cloud);
     // Track object i in every frame in this sequence
@@ -374,7 +376,7 @@ int main(int argc, char** argv)
                             caches,
                             labels);
       fg_kdtree = buildForegroundKdTree(target_frame,
-                                        target_frame.segmentation_->tracked_objects_[i],
+                                        target_frame.getTrackedObject(i + 1),
                                         fg_cloud);
       whole_kdtree = buildKdTree(target_frame.cloud_smooth_, whole_cloud);
       // quit the program if there is no segmentation

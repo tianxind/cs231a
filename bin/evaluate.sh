@@ -1,7 +1,7 @@
 # Best sigma for only depth: 0.25
 # Best sigma for only bilateral: 0.25, 0.5, 1 - no big difference
 # Best sigma for edge potential: >=1
-for sequence in 4 #2 3 4 5 6
+for sequence in 2 3 6
 do
 #    for sigma in 0.25 #0.5 1
 #    do
@@ -23,9 +23,9 @@ do
             export BILATERAL_W=0.4888858185743249
             export EDGE_SIGMA=1
             export RADIUS=$radius
-            logfile="logb0$sequence$sigma"
+            logfile="logb0$sequence"
             ./bilateral_segmenter ~/cs231a/$sequence_name > $logfile
-            filename="resultb0$sequence$radius$sigma"
+            filename="resultb0$sequence$radius"
             golden_name="golden0$sequence"
             ./evaluator ~/cs231a/$sequence_name ~/cs231a/$golden_name > $filename
             tail -n 1 $filename
