@@ -145,6 +145,9 @@ void saveSequence(Sequence& seq) {
     Scene& target_frame = *seq.getScene(j);
     cout << "About to save segmentation " << j << " ..." << endl;
     target_frame.saveSegmentation();
+    // Save node potential for this scene to file
+    target_frame.saveBilateralPotential();
+    target_frame.saveDistToFgPotential();
   }
 }
 
@@ -261,9 +264,6 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
     // Aggregate two potentials using predefined weights, and add the potential to graph
     aggregatePotential(i, node, src_potentials, snk_potentials, graph_);
   }
-  // Save node potential for this scene to file
-  target_frame.saveBilateralPotential();
-  target_frame.saveDistToFgPotential();
   // Add edges and edge potentials
   // First construct kdtree for current image
   cout << "Build kdtree for current image..." << endl;
