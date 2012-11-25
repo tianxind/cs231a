@@ -34,28 +34,21 @@ string usageString()
   return oss.str();
 }
 
-pcl::KdTreeFLANN<pcl::PointXYZ>* buildForegroundKdTree(Scene& seed_frame, pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud) {
-  vector<TrackedObject>& seed_objects = seed_frame.segmentation_->tracked_objects_;
+// Builds foreground kdtree for one tracked object
+pcl::KdTreeFLANN<pcl::PointXYZ>* 
+buildForegroundKdTree(Scene& seed_frame,
+                      TrackedObject& to, 
+                      pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud) {
   pcl::KdTreeFLANN<pcl::PointXYZ>* fg_tree = new pcl::KdTreeFLANN<pcl::PointXYZ>();
   
-  int num_points = 0;
-  for (size_t i = 0; i < seed_objects.size(); ++i) {
-    num_points += seed_objects[i].indices_.size();
-  }
-  fg_cloud->width = num_points;
+  fg_cloud->width = to.indices_.size();
   fg_cloud->height = 1;
   fg_cloud->points.resize(fg_cloud->width * fg_cloud->height);
-  int cloud_index = 0;
-  for (size_t i = 0; i < seed_objects.size(); ++i) {
-    vector<int>& indices = seed_objects[i].indices_;
-    for (size_t j = 0; j < indices.size(); ++j) {
-      fg_cloud->points[cloud_index].x = seed_frame.cloud_smooth_(indices[j], 0); 
-      fg_cloud->points[cloud_index].y = seed_frame.cloud_smooth_(indices[j], 1);
-      fg_cloud->points[cloud_index].z = seed_frame.cloud_smooth_(indices[j], 2);  
-      cloud_index++;
-    }
+  for (size_t i = 0; i < to.indices_.size(); ++i) {
+    fg_cloud->points[i].x = seed_frame.cloud_smooth_(to.indices_[i], 0); 
+    fg_cloud->points[i].y = seed_frame.cloud_smooth_(to.indices_[i], 1);
+    fg_cloud->points[i].z = seed_frame.cloud_smooth_(to.indices_[i], 2);      
   }
-  cout<<"foreground cloud size: " << cloud_index << endl; 
   if (fg_cloud->width == 0) {
     return NULL;
   }
@@ -132,10 +125,10 @@ void addEdgesWithinRadius(Eigen::MatrixXf& cloud_smooth_,
 }
 
 void generateSegmentationFromGraph(graphcuts::Graph3dPtr graph,
+                                   int index,
                                    Scene& target_frame) {
   TrackedObject to;
-  // Set id to 1 and save all objects in object 1
-  to.id_ = 1;
+  to.id_ = index;
   int foreground_num = 0;
   for (int i = 0; i < target_frame.cloud_smooth_.rows(); ++i) {
     if (graph->what_segment(i, Graph<double, double, double>::SINK) ==
@@ -145,8 +138,14 @@ void generateSegmentationFromGraph(graphcuts::Graph3dPtr graph,
     }
   }
   target_frame.addTrackedObject(to);
-  cout << "About to save segmentation..."<< foreground_num  << endl;
-  target_frame.saveSegmentation();
+}
+
+void saveSequence(Sequence& seq) {
+  for (size_t j = 1; j < seq.size(); ++j) {
+    Scene& target_frame = *seq.getScene(j);
+    cout << "About to save segmentation " << j << " ..." << endl;
+    target_frame.saveSegmentation();
+  }
 }
 
 void addDistToForegroundPotential(pcl::PointXYZ& node,
@@ -238,6 +237,7 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
                            pcl::KdTreeFLANN<pcl::PointXYZ>* whole_kdtree,
                            pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud,
                            pcl::PointCloud<pcl::PointXYZ>::Ptr whole_cloud,
+                           int index,
                            Scene& target_frame) {
   Eigen::MatrixXf cloud_smooth_ = target_frame.cloud_smooth_;
   int num_nodes = cloud_smooth_.rows();
@@ -246,8 +246,8 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
   // Add nodes and node potentials
   cout << "Adding nodes to graph..." << endl;
   graph_->add_node(num_nodes);
-  target_frame.clearBilateralPotential();
-  target_frame.clearDistToFgPotential();
+  // target_frame.clearBilateralPotential();
+  // target_frame.clearDistToFgPotential();
   for (int i = 0; i < num_nodes; ++i) {
     pcl::PointXYZ node;
     node.x = cloud_smooth_(i, 0);
@@ -277,7 +277,7 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree,
   }
   cout << "Running max flow..." << endl;
   graph_->maxflow();
-  generateSegmentationFromGraph(graph_, target_frame);
+  generateSegmentationFromGraph(graph_, index, target_frame);
 }
 
 int main(int argc, char** argv)
@@ -296,24 +296,31 @@ int main(int argc, char** argv)
   Sequence seq(dirpath);
   // Read in seed frame data
   Scene& seed_frame = *seq.getScene(0);
-  // Construct seed segmentation KdTree
-  cout << "Construct seed frame kdtree..." << endl;
-
-  pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud (new pcl::PointCloud<pcl::PointXYZ>);
-  pcl::PointCloud<pcl::PointXYZ>::Ptr whole_cloud (new pcl::PointCloud<pcl::PointXYZ>);
-
-  pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree = buildForegroundKdTree(seed_frame, fg_cloud);
-  pcl::KdTreeFLANN<pcl::PointXYZ>* whole_kdtree = buildKdTree(seed_frame.cloud_smooth_, whole_cloud);
-
-  for (size_t i = 1; i < seq.size(); ++i) {
-    Scene& target_frame = *seq.getScene(i);
-    cout << "Tracking image in frame " << i << endl;
-    graphCutsSegmentation(fg_kdtree, whole_kdtree, fg_cloud, whole_cloud, target_frame);
-    fg_kdtree = buildForegroundKdTree(target_frame, fg_cloud);
-    whole_kdtree = buildKdTree(target_frame.cloud_smooth_, whole_cloud);
-    // quit the program if there is no segmentation
-    if(fg_kdtree == NULL)break;
-    // Find the closest object each segmented point belongs to 
+  size_t num_to = seed_frame.segmentation_->tracked_objects_.size();
+  for (size_t i = 0; i < num_to; ++i) {
+    cout << "Construct seed frame kdtree for object " << i <<" ..." << endl;
+    pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud (new pcl::PointCloud<pcl::PointXYZ>);
+    pcl::PointCloud<pcl::PointXYZ>::Ptr whole_cloud (new pcl::PointCloud<pcl::PointXYZ>);
+    
+    pcl::KdTreeFLANN<pcl::PointXYZ>* fg_kdtree = 
+      buildForegroundKdTree(seed_frame, seed_frame.segmentation_->tracked_objects_[i], fg_cloud);
+    pcl::KdTreeFLANN<pcl::PointXYZ>* whole_kdtree =
+      buildKdTree(seed_frame.cloud_smooth_, whole_cloud);
+    // Track object i in every frame in this sequence
+    for (size_t j = 1; j < seq.size(); ++j) {
+      Scene& target_frame = *seq.getScene(j);
+      cout << "Tracking object " << i << " in frame " << j << endl;
+      graphCutsSegmentation(fg_kdtree, whole_kdtree, fg_cloud, whole_cloud, i + 1, target_frame);
+      fg_kdtree = buildForegroundKdTree(target_frame,
+                                        target_frame.segmentation_->tracked_objects_[i],
+                                        fg_cloud);
+      whole_kdtree = buildKdTree(target_frame.cloud_smooth_, whole_cloud);
+      // quit the program if there is no segmentation
+      if (fg_kdtree == NULL) break;
+      // Find the closest object each segmented point belongs to 
+    }
   }
+  // Save segmentation of the whole sequence
+  saveSequence(seq);
   return 0;
 }

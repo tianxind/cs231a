@@ -10,6 +10,8 @@ do
             sequence_name="sequence0$sequence"
             # Remove segmentation from previous run
             rm ~/cs231a/$sequence_name/*_segmentation.dat
+            rm ~/cs231a/$sequence_name/*_bilateral.dat
+            rm ~/cs231a/$sequence_name/*_dist.dat
             # Copy seed frame
             cp ~/cs231a/seed/*_segmentation.dat ~/cs231a/$sequence_name
             # Run segmentation
