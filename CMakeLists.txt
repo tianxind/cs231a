@@ -55,5 +55,8 @@ target_link_libraries(nographcuts_segmenter ${PROJECT_NAME})
 rosbuild_add_executable(ssvm_learning src/ssvm_learning.cpp)
 target_link_libraries(ssvm_learning ${PROJECT_NAME})
 
+rosbuild_add_executable(ssvm_learning2 src/ssvm_learning2.cpp)
+target_link_libraries(ssvm_learning2 ${PROJECT_NAME})
+
 rosbuild_add_executable(sn_segmenter src/sn_segmenter.cpp)
 target_link_libraries(sn_segmenter ${PROJECT_NAME}) 
