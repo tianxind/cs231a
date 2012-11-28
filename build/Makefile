@@ -304,6 +304,19 @@ segmentation_and_tracking/fast:
 .PHONY : segmentation_and_tracking/fast
 
 #=============================================================================
+# Target rules for targets named sn_segmenter
+
+# Build rule for target.
+sn_segmenter: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sn_segmenter
+.PHONY : sn_segmenter
+
+# fast build rule for target.
+sn_segmenter/fast:
+	$(MAKE) -f CMakeFiles/sn_segmenter.dir/build.make CMakeFiles/sn_segmenter.dir/build
+.PHONY : sn_segmenter/fast
+
+#=============================================================================
 # Target rules for targets named ssvm_learning
 
 # Build rule for target.
@@ -545,6 +558,21 @@ src/sequence.s:
 .PHONY : src/sequence.s
 
 # target to build an object file
+src/sn_segmenter.o:
+	$(MAKE) -f CMakeFiles/sn_segmenter.dir/build.make CMakeFiles/sn_segmenter.dir/src/sn_segmenter.o
+.PHONY : src/sn_segmenter.o
+
+# target to preprocess a source file
+src/sn_segmenter.i:
+	$(MAKE) -f CMakeFiles/sn_segmenter.dir/build.make CMakeFiles/sn_segmenter.dir/src/sn_segmenter.i
+.PHONY : src/sn_segmenter.i
+
+# target to generate assembly for a file
+src/sn_segmenter.s:
+	$(MAKE) -f CMakeFiles/sn_segmenter.dir/build.make CMakeFiles/sn_segmenter.dir/src/sn_segmenter.s
+.PHONY : src/sn_segmenter.s
+
+# target to build an object file
 src/ssvm_learning.o:
 	$(MAKE) -f CMakeFiles/ssvm_learning.dir/build.make CMakeFiles/ssvm_learning.dir/src/ssvm_learning.o
 .PHONY : src/ssvm_learning.o
@@ -613,6 +641,7 @@ help:
 	@echo "... rospack_genmsg_libexe"
 	@echo "... rospack_gensrv"
 	@echo "... segmentation_and_tracking"
+	@echo "... sn_segmenter"
 	@echo "... ssvm_learning"
 	@echo "... test"
 	@echo "... test-future"
@@ -650,6 +679,9 @@ help:
 	@echo "... src/sequence.o"
 	@echo "... src/sequence.i"
 	@echo "... src/sequence.s"
+	@echo "... src/sn_segmenter.o"
+	@echo "... src/sn_segmenter.i"
+	@echo "... src/sn_segmenter.s"
 	@echo "... src/ssvm_learning.o"
 	@echo "... src/ssvm_learning.i"
 	@echo "... src/ssvm_learning.s"

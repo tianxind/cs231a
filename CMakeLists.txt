@@ -30,9 +30,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 rosbuild_add_library(${PROJECT_NAME} src/scene.cpp src/segmentation.cpp
   src/tracked_object.cpp src/sequence.cpp src/node_potential.cpp
   src/hand_segmenter_view_controller.cpp)
-#target_link_libraries(${PROJECT_NAME} pcl_bleeding)
-#rosbuild_add_boost_directories()
-#rosbuild_link_boost(${PROJECT_NAME} thread)
+
 rosbuild_add_executable(view_data src/view_data.cpp)
 target_link_libraries(view_data ${PROJECT_NAME})
 
@@ -55,4 +53,7 @@ rosbuild_add_executable(nographcuts_segmenter src/nographcuts_segmenter.cpp)
 target_link_libraries(nographcuts_segmenter ${PROJECT_NAME}) 
 
 rosbuild_add_executable(ssvm_learning src/ssvm_learning.cpp)
-target_link_libraries(ssvm_learning ${PROJECT_NAME}) 
+target_link_libraries(ssvm_learning ${PROJECT_NAME})
+
+rosbuild_add_executable(sn_segmenter src/sn_segmenter.cpp)
+target_link_libraries(sn_segmenter ${PROJECT_NAME}) 
