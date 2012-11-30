@@ -330,6 +330,19 @@ ssvm_learning/fast:
 .PHONY : ssvm_learning/fast
 
 #=============================================================================
+# Target rules for targets named ssvm_learning2
+
+# Build rule for target.
+ssvm_learning2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ssvm_learning2
+.PHONY : ssvm_learning2
+
+# fast build rule for target.
+ssvm_learning2/fast:
+	$(MAKE) -f CMakeFiles/ssvm_learning2.dir/build.make CMakeFiles/ssvm_learning2.dir/build
+.PHONY : ssvm_learning2/fast
+
+#=============================================================================
 # Target rules for targets named test
 
 # Build rule for target.
@@ -588,6 +601,21 @@ src/ssvm_learning.s:
 .PHONY : src/ssvm_learning.s
 
 # target to build an object file
+src/ssvm_learning2.o:
+	$(MAKE) -f CMakeFiles/ssvm_learning2.dir/build.make CMakeFiles/ssvm_learning2.dir/src/ssvm_learning2.o
+.PHONY : src/ssvm_learning2.o
+
+# target to preprocess a source file
+src/ssvm_learning2.i:
+	$(MAKE) -f CMakeFiles/ssvm_learning2.dir/build.make CMakeFiles/ssvm_learning2.dir/src/ssvm_learning2.i
+.PHONY : src/ssvm_learning2.i
+
+# target to generate assembly for a file
+src/ssvm_learning2.s:
+	$(MAKE) -f CMakeFiles/ssvm_learning2.dir/build.make CMakeFiles/ssvm_learning2.dir/src/ssvm_learning2.s
+.PHONY : src/ssvm_learning2.s
+
+# target to build an object file
 src/tracked_object.o:
 	$(MAKE) -f CMakeFiles/segmentation_and_tracking.dir/build.make CMakeFiles/segmentation_and_tracking.dir/src/tracked_object.o
 .PHONY : src/tracked_object.o
@@ -643,6 +671,7 @@ help:
 	@echo "... segmentation_and_tracking"
 	@echo "... sn_segmenter"
 	@echo "... ssvm_learning"
+	@echo "... ssvm_learning2"
 	@echo "... test"
 	@echo "... test-future"
 	@echo "... test-results"
@@ -685,6 +714,9 @@ help:
 	@echo "... src/ssvm_learning.o"
 	@echo "... src/ssvm_learning.i"
 	@echo "... src/ssvm_learning.s"
+	@echo "... src/ssvm_learning2.o"
+	@echo "... src/ssvm_learning2.i"
+	@echo "... src/ssvm_learning2.s"
 	@echo "... src/tracked_object.o"
 	@echo "... src/tracked_object.i"
 	@echo "... src/tracked_object.s"
