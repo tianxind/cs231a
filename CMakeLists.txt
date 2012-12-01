@@ -60,3 +60,6 @@ target_link_libraries(ssvm_learning2 ${PROJECT_NAME})
 
 rosbuild_add_executable(sn_segmenter src/sn_segmenter.cpp)
 target_link_libraries(sn_segmenter ${PROJECT_NAME}) 
+
+rosbuild_add_executable(dist src/dist.cpp)
+target_link_libraries(dist ${PROJECT_NAME}) 

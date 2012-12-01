@@ -189,7 +189,7 @@ TOOLCHAINCONFIG:FILEPATH=TOOLCHAINCONFIG-NOTFOUND
 USERCONFIG:FILEPATH=USERCONFIG-NOTFOUND
 
 //Path to a file.
-_file_name:FILEPATH=/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/sn_segmenter.cpp
+_file_name:FILEPATH=/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/src/dist.cpp
 
 //Value Computed by CMake
 segmentation_and_tracking_BINARY_DIR:STATIC=/home/sandra/cs231a/jarvis/ros-pkg/core/segmentation_and_tracking/build

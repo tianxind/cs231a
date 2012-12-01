@@ -174,6 +174,19 @@ clean-test-results/fast:
 .PHONY : clean-test-results/fast
 
 #=============================================================================
+# Target rules for targets named dist
+
+# Build rule for target.
+dist: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 dist
+.PHONY : dist
+
+# fast build rule for target.
+dist/fast:
+	$(MAKE) -f CMakeFiles/dist.dir/build.make CMakeFiles/dist.dir/build
+.PHONY : dist/fast
+
+#=============================================================================
 # Target rules for targets named evaluator
 
 # Build rule for target.
@@ -211,6 +224,19 @@ hand_segmenter: cmake_check_build_system
 hand_segmenter/fast:
 	$(MAKE) -f CMakeFiles/hand_segmenter.dir/build.make CMakeFiles/hand_segmenter.dir/build
 .PHONY : hand_segmenter/fast
+
+#=============================================================================
+# Target rules for targets named loocv
+
+# Build rule for target.
+loocv: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 loocv
+.PHONY : loocv
+
+# fast build rule for target.
+loocv/fast:
+	$(MAKE) -f CMakeFiles/loocv.dir/build.make CMakeFiles/loocv.dir/build
+.PHONY : loocv/fast
 
 #=============================================================================
 # Target rules for targets named nographcuts_segmenter
@@ -436,6 +462,21 @@ src/bilateral_segmenter.s:
 .PHONY : src/bilateral_segmenter.s
 
 # target to build an object file
+src/dist.o:
+	$(MAKE) -f CMakeFiles/dist.dir/build.make CMakeFiles/dist.dir/src/dist.o
+.PHONY : src/dist.o
+
+# target to preprocess a source file
+src/dist.i:
+	$(MAKE) -f CMakeFiles/dist.dir/build.make CMakeFiles/dist.dir/src/dist.i
+.PHONY : src/dist.i
+
+# target to generate assembly for a file
+src/dist.s:
+	$(MAKE) -f CMakeFiles/dist.dir/build.make CMakeFiles/dist.dir/src/dist.s
+.PHONY : src/dist.s
+
+# target to build an object file
 src/evaluator.o:
 	$(MAKE) -f CMakeFiles/evaluator.dir/build.make CMakeFiles/evaluator.dir/src/evaluator.o
 .PHONY : src/evaluator.o
@@ -494,6 +535,21 @@ src/hand_segmenter_view_controller.i:
 src/hand_segmenter_view_controller.s:
 	$(MAKE) -f CMakeFiles/segmentation_and_tracking.dir/build.make CMakeFiles/segmentation_and_tracking.dir/src/hand_segmenter_view_controller.s
 .PHONY : src/hand_segmenter_view_controller.s
+
+# target to build an object file
+src/loocv.o:
+	$(MAKE) -f CMakeFiles/loocv.dir/build.make CMakeFiles/loocv.dir/src/loocv.o
+.PHONY : src/loocv.o
+
+# target to preprocess a source file
+src/loocv.i:
+	$(MAKE) -f CMakeFiles/loocv.dir/build.make CMakeFiles/loocv.dir/src/loocv.i
+.PHONY : src/loocv.i
+
+# target to generate assembly for a file
+src/loocv.s:
+	$(MAKE) -f CMakeFiles/loocv.dir/build.make CMakeFiles/loocv.dir/src/loocv.s
+.PHONY : src/loocv.s
 
 # target to build an object file
 src/node_potential.o:
@@ -657,10 +713,12 @@ help:
 	@echo "... ROSBUILD_gensrv_lisp"
 	@echo "... bilateral_segmenter"
 	@echo "... clean-test-results"
+	@echo "... dist"
 	@echo "... edit_cache"
 	@echo "... evaluator"
 	@echo "... graphcuts_segmenter"
 	@echo "... hand_segmenter"
+	@echo "... loocv"
 	@echo "... nographcuts_segmenter"
 	@echo "... rebuild_cache"
 	@echo "... rosbuild_precompile"
@@ -681,6 +739,9 @@ help:
 	@echo "... src/bilateral_segmenter.o"
 	@echo "... src/bilateral_segmenter.i"
 	@echo "... src/bilateral_segmenter.s"
+	@echo "... src/dist.o"
+	@echo "... src/dist.i"
+	@echo "... src/dist.s"
 	@echo "... src/evaluator.o"
 	@echo "... src/evaluator.i"
 	@echo "... src/evaluator.s"
@@ -693,6 +754,9 @@ help:
 	@echo "... src/hand_segmenter_view_controller.o"
 	@echo "... src/hand_segmenter_view_controller.i"
 	@echo "... src/hand_segmenter_view_controller.s"
+	@echo "... src/loocv.o"
+	@echo "... src/loocv.i"
+	@echo "... src/loocv.s"
 	@echo "... src/node_potential.o"
 	@echo "... src/node_potential.i"
 	@echo "... src/node_potential.s"

@@ -40,7 +40,11 @@ double reportMetrics(set<int>& result, set<int>& golden) {
   int num_fp = result.size() - num_tp;
   int num_wrong = result.size() + golden.size() - 2 * num_tp;
   if (golden.size() == 0) {
-    norm_accuracy = 0;
+    if (result.size() == 0) {
+      norm_accuracy = 1.0;
+    } else {
+      norm_accuracy = 0;
+    }
   } else {
     double accuracy = double(num_wrong) / golden.size();
     norm_accuracy = 1.0 - ((1.0 < accuracy) ? 1.0 : accuracy);
