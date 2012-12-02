@@ -77,11 +77,14 @@ buildKdTree(Eigen::MatrixXf& cloud_smooth_,
 }
 
 double distToPrevForeground(pcl::PointXYZ& node,
-                            pcl::KdTreeFLANN<pcl::PointXYZ>::Ptr fg_kdtree) {
+                            pcl::KdTreeFLANN<pcl::PointXYZ>::Ptr fg_kdtree,
+                            pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud) {
   vector<int> nearest(1);
   vector<float> distance(1);
   fg_kdtree->nearestKSearch(node, 1, nearest, distance);
-  return sqrt(distance[0]);
+
+  pcl::PointXYZ neighbor = fg_cloud->points[nearest[0]];
+  return pcl::euclideanDistance(node, neighbor);
 }
 
 double getColorDistance(int node_index,
@@ -204,10 +207,11 @@ void saveSequence(Sequence& seq) {
 void addDistToForegroundPotential(pcl::PointXYZ& node,
                                   int node_index,
                                   pcl::KdTreeFLANN<pcl::PointXYZ>::Ptr fg_kdtree,
+				  pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud,
                                   Eigen::VectorXd& src_potentials,
                                   Eigen::VectorXd& snk_potentials,
                                   Scene& target_frame) {
-  double dist = distToPrevForeground(node, fg_kdtree);
+  double dist = distToPrevForeground(node, fg_kdtree, fg_cloud);
   double src_pot = exp(-dist/DEPG_SIGMA);
   src_potentials[node_index] = src_pot;
   snk_potentials[node_index] = 1.0 - src_pot;
@@ -410,7 +414,7 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>::Ptr fg_kdtree,
     node.y = cloud_smooth_(i, 1);
     node.z = cloud_smooth_(i, 2);
     // Add node potential computed from distance to previous foreground
-    addDistToForegroundPotential(node, i, fg_kdtree, src_pot[0], snk_pot[0], target_frame);
+    addDistToForegroundPotential(node, i, fg_kdtree, fg_cloud, src_pot[0], snk_pot[0], target_frame);
 
     addBilateralPotential(node, i, fg_kdtree, whole_kdtree, fg_cloud, whole_cloud, 0.15,
                           src_pot[1], snk_pot[1], target_frame);
@@ -541,18 +545,24 @@ int main(int argc, char** argv)
   vector<gc::VecXiPtr> labels;
   // Read in seed frame data
 
-  int SEQNUM = 3;
   string rootpath = argv[1];
+  int seq_begin = argv[2][0]-'0';
+  int seq_n = argv[3][0]-'0';
+  int seq_left = argv[4][0]-'0';
+
+  cout<< "data sequences begin: "<< seq_begin << "; end:" << (seq_begin + seq_n -1) << "; skip"<< seq_left << endl;
+  int xxx = seq_begin+ seq_n + seq_left ;
+
   string dirpath;
-  for(int i=1; i< SEQNUM; i++){
+  for(int i= seq_begin ; i< seq_begin+seq_n && i != seq_left; i++){
+      if(i==seq_left)
+          continue;
     char ch = '0' + i;
     dirpath = rootpath + "0" + ch;
     calculateLabel(dirpath, caches, labels);
-
-
   } 
-
-
+  
+ 
   gc::Model model = ssvm.train(caches, labels);
   cout << model << endl;
   return 0;
