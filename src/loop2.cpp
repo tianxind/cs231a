@@ -49,6 +49,7 @@ buildForegroundKdTree(Scene& seed_frame,
                       TrackedObject& to,
                       pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud,
                       pcl::KdTreeFLANN<pcl::PointXYZ>::Ptr fg_tree) {
+  
   fg_cloud->width = to.indices_.size();
   fg_cloud->height = 1;
   fg_cloud->points.resize(fg_cloud->width * fg_cloud->height);
@@ -57,10 +58,16 @@ buildForegroundKdTree(Scene& seed_frame,
     fg_cloud->points[i].y = seed_frame.cloud_smooth_(to.indices_[i], 1);
     fg_cloud->points[i].z = seed_frame.cloud_smooth_(to.indices_[i], 2);
   }
-  if (fg_cloud->width == 0)
-    return;
+
+  // return empty tree
+  if (fg_cloud->width == 0) {
+  // return NULL;
+      return;
+  }
   fg_tree->setInputCloud(fg_cloud);
 }
+
+
 
 void
 buildKdTree(Eigen::MatrixXf& cloud_smooth_,
@@ -112,11 +119,11 @@ double computeNormalPotential(int index,
                               int neighbor_index,
                               Eigen::MatrixXf& normals) {
   // Check for validity of normal vectors
-  if (isnan(normals(index, 0)) || isinf(normals(index, 0)) ||
-      isnan(normals(index, 1)) || isinf(normals(index, 1)) ||
-      isnan(normals(index, 2)) || isinf(normals(index, 2)) ||
-      isnan(normals(neighbor_index, 0)) || isinf(normals(neighbor_index, 0)) ||
-      isnan(normals(neighbor_index, 1)) || isinf(normals(neighbor_index, 1)) ||
+  if (isnan(normals(index, 0)) || isinf(normals(index, 0)) || 
+      isnan(normals(index, 1)) || isinf(normals(index, 1)) || 
+      isnan(normals(index, 2)) || isinf(normals(index, 2)) || 
+      isnan(normals(neighbor_index, 0)) || isinf(normals(neighbor_index, 0)) || 
+      isnan(normals(neighbor_index, 1)) || isinf(normals(neighbor_index, 1)) || 
       isnan(normals(neighbor_index, 2)) || isinf(normals(neighbor_index, 2))) {
     return 0.0;
   }
@@ -126,6 +133,16 @@ double computeNormalPotential(int index,
   double dot = normals(neighbor_index, 0) * normals(index, 0) +
     normals(neighbor_index, 1) * normals(index, 1) +
     normals(neighbor_index, 2) * normals(index, 2);
+  
+  double div1 = normals(index, 0) * normals(index, 0) +
+    normals(index, 1) * normals(index, 1) +
+    normals(index, 2) * normals(index, 2);
+
+  double div2 = normals(neighbor_index, 0) * normals(neighbor_index, 0) +
+    normals(neighbor_index, 1) * normals(neighbor_index, 1) +
+    normals(neighbor_index, 2) * normals(neighbor_index, 2);
+
+  dot = dot / sqrt(div1*div2);
 
   double angle = acos(dot);
   if (fabs(dot - 1e-6) > 1 || fabs(dot + 1e-6) > 1)
@@ -170,15 +187,22 @@ void addEdgesWithinRadius(Eigen::MatrixXf& cloud_smooth_,
       double color_potential = exp(-getColorDistance(index, neighbors[i], cam_points_, img)
                                    /COLOR_SIGMA);
       double normal_potential = computeNormalPotential(index, neighbors[i], normals);
+    
+      //cout<< "######################################"<<endl;
+      //cout<< dist_potential << " " << color_potential << " " << normal_potential <<endl;
 
       // double edge_potential = COLOR_W * color_potential + DIST_W * dist_potential; 
       // Push edge potential into our vector for learning
-      edge_pot[0].coeffRef(index, neighbors[i]) = dist_potential;
-      edge_pot[0].coeffRef(neighbors[i], index) = dist_potential;
-      edge_pot[1].coeffRef(neighbors[i], index) = color_potential;
-      edge_pot[1].coeffRef(index, neighbors[i]) = color_potential;
-      edge_pot[2].coeffRef(index, neighbors[i]) = normal_potential;
-      edge_pot[2].coeffRef(neighbors[i], index) = normal_potential;
+      if(index < neighbors[i]){
+          edge_pot[0].coeffRef(index, neighbors[i]) = dist_potential;
+          edge_pot[1].coeffRef(index, neighbors[i]) = color_potential;
+          edge_pot[2].coeffRef(index, neighbors[i]) = normal_potential;
+      }else{
+          edge_pot[0].coeffRef(neighbors[i], index) = dist_potential;
+          edge_pot[1].coeffRef(neighbors[i], index) = color_potential;
+          edge_pot[2].coeffRef(neighbors[i], index) = normal_potential;
+      }
+
       // Add this edge potential to graphcuts
       // graph->add_edge(index, neighbors[i], edge_potential, edge_potential);
     }
@@ -475,11 +499,16 @@ void graphCutsSegmentation(pcl::KdTreeFLANN<pcl::PointXYZ>::Ptr fg_kdtree,
   cache->edge_.push_back(gc::SparseMat(edge_pot[1]));
   cache->epot_names_.addName("NormalPotential");
   cache->edge_.push_back(gc::SparseMat(edge_pot[2]));
+ 
+
+
   // Running maxflow and generate training labels
   // cout << "Running max flow..." << endl;
   // graph_->maxflow();
   gc::VecXiPtr label(new gc::VecXi(num_nodes));
   generateSegmentationFromGraph(/*graph_,*/ index, target_frame, /*gold_frame,*/ label);
+
+  cache->symmetrizeEdges();
   // Push training features and labels of this frame to caches and labels
   caches.push_back(cache);
   labels.push_back(label);
@@ -492,6 +521,8 @@ void calculateLabel(string dirpath,
   Scene& seed_frame = *seq_gold.getScene(0);
   size_t num_to = seed_frame.segmentation_->tracked_objects_.size();
   for (size_t i = 0; i < num_to; ++i) {
+    if(i>0)break; 
+
     cout << "Construct seed frame kdtree for object " << i <<" ..." << endl;
     pcl::PointCloud<pcl::PointXYZ>::Ptr fg_cloud (new pcl::PointCloud<pcl::PointXYZ>);
     pcl::PointCloud<pcl::PointXYZ>::Ptr whole_cloud (new pcl::PointCloud<pcl::PointXYZ>);
@@ -522,10 +553,8 @@ void calculateLabel(string dirpath,
                             fg_kdtree);
       buildKdTree(target_frame.cloud_smooth_, whole_cloud, whole_kdtree);
 
-
-
       // quit the program if there is no segmentation
-      //if (fg_kdtree == NULL) break;
+      if (target_frame.getTrackedObject(i+1).indices_.size() == 0) break;
       // Find the closest object each segmented point belongs to 
     }
   }
@@ -566,8 +595,7 @@ int main(int argc, char** argv)
   int seq_left = argv[4][0]-'0';
 
   cout<< "data sequences begin: "<< seq_begin << "; end:" << (seq_begin + seq_n -1) << "; skip"<< seq_left << endl;
-  int xxx = seq_begin+ seq_n + seq_left ;
-
+ 
   string dirpath;
   for(int i = seq_begin ; i < seq_begin + seq_n; i++){
       if(i == seq_left)
